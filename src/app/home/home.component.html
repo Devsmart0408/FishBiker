@@ -89,22 +89,23 @@
                     <div class="tt-description">
                       <div class="tt-row">
                         <ul class="tt-add-info">
-                          <li><a href="#">{{product.ProductName}}</a></li>
-                          <!-- <li><a href="#">{{product.Attributes.Type[0].PricePerUnit}}</a></li>
-                          <li><a href="#">{{product.Attributes.Type[0].CountryOfOriginId}}</a></li>
-                          <li><a href="#">{{product.Attributes.Type[0].DeliveryType}}</a></li> -->
+                          <li><h2 class="tt-title"><a href="#">{{product.ProductName}}</a></h2></li>
                         </ul>
-                        <!-- <div class="tt-rating">
-                          <i class="icon-star"></i>
-                          <i class="icon-star"></i>
-                          <i class="icon-star"></i>
-                          <i class="icon-star-half"></i>
-                          <i class="icon-star-empty"></i>
-                        </div> -->
+                        <ul class="tt-add-info" *ngIf="product.Attributes.Type">
+                          <li><a href="#">{{product.Attributes.Type[0].Attribute}}</a></li>
+                          <li><a href="#">{{product.Attributes.Type[0].PricePerUnit}}</a></li>
+                          <li><a href="#">{{product.Attributes.Type[0].CountryOfOriginId}}</a></li>
+                          <li><a href="#">{{product.Attributes.Type[0].DeliveryType}}</a></li>
+                        </ul>
+                        <ul class="tt-add-info" *ngIf="product.Attributes.Size">
+                          <li><a href="#">{{product.Attributes.Size[0].Attribute}}</a></li>
+                          <li><a href="#">{{product.Attributes.Size[0].PricePerUnit}}</a></li>
+                          <li><a href="#">{{product.Attributes.Size[0].CountryOfOriginId}}</a></li>
+                          <li><a href="#">{{product.Attributes.Size[0].DeliveryType}}</a></li>
+                        </ul>
                       </div>
-                      <h2 class="tt-title"><a (click)="viewProduct(1)">{{product.ProductId}}</a></h2>
+                      <!-- <h2 class="tt-title"><a (click)="viewProduct(1)">{{product.ProductId}}</a></h2> -->
                       <div class="tt-price">
-                        <!--{{product.Attributes.Type[0].PricePerUnit}}-->
                       </div>
                       <div class="tt-product-inside-hover">
                         <div class="tt-row-btn">
