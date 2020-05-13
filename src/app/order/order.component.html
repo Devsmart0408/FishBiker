@@ -1,0 +1,110 @@
+
+<div class="container container-fluid-mobile">
+  <div class="row">
+    <div class="col-6">
+        <div class="container-indent">
+          <div class="container container-fluid-custom-mobile-padding">
+            <div class="tt-shopping-layout">
+              <h2 class="tt-title-border">Orders</h2>
+              <div class="tt-wrapper">
+                <div class="tt-table-responsive">
+                  <div class="tt-collapse-block">
+                    <div class="tt-item">
+                      <div class="tt-collapse-title">12/01/2019 - 2 x Cod</div>
+                      <div class="tt-collapse-content">
+                        <table class="tt-table-shop-01">
+                          <thead>
+                            <tr>
+                              <th>ORDER</th>
+                              <th>FULFILLMENT STATUS</th>
+                              <th>TOTAL</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><a href="shopping_order.html">#001</a></td>
+                              <td>November 20. 2016</td>
+                              <td>Processing</td>
+                            </tr>
+                            <tr>
+                              <td><a href="shopping_order.html">#001</a></td>
+                              <td>November 20. 2016</td>
+                              <td>$40 fot 1 item</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="tt-item">
+                      <div class="tt-collapse-title">22/12/2019 - 3 x Salmon</div>
+                      <div class="tt-collapse-content">
+                        <table class="tt-table-03">
+                          <tbody>
+                            <tr>
+                              <td>Color:</td>
+                              <td>Blue, Purple, White</td>
+                            </tr>
+                            <tr>
+                              <td>Size:</td>
+                              <td>20, 24</td>
+                            </tr>
+                            <tr>
+                              <td>Material:</td>
+                              <td>100% Polyester</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                    <div class="tt-item">
+                      <div class="tt-collapse-title">Current Order</div>
+                      <div class="tt-collapse-content">
+                        <table class="tt-table-shop-01">
+                          <thead>
+                            <tr>
+                              <th>ORDER</th>
+                              <th>FULFILLMENT STATUS</th>
+                              <th>TOTAL</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><a href="shopping_order.html">#001</a></td>
+                              <td>November 20. 2016</td>
+                              <td>Processing</td>
+                            </tr>
+                            <tr>
+                              <td><a href="shopping_order.html">#001</a></td>
+                              <td>November 20. 2016</td>
+                              <td>$40 fot 1 item</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="container-indent">
+          <div class="container container-fluid-custom-mobile-padding">
+            <div class="tt-shopping-layout">
+              <h2 class="tt-title-border">Delivery Info</h2>
+              <div>Phone Number: +971 - 12345678</div>
+            </div>
+          </div>
+        </div>
+        <div class="map"
+             leaflet
+             [leafletOptions]="options"
+             (leafletMapReady)="onMapReady($event)">
+        </div>
+    </div>
+  </div>
+</div>

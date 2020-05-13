@@ -1,0 +1,19 @@
+.tt-menu-small {
+    margin-top: 0!important;
+}
+.tt-main-menu-ul li a{
+    padding: 30px 20px 30px 0!important;
+    font-size: 18px;
+}
+.tt-position-top-12 {
+    top: 12px!important;
+}
+.tt-position-top-12 .tt-dropdown-toggle {
+    font-size: 22px!important;
+}
+header .tt-account ul li a [class^="icon-"] {
+    font-size: 26px!important;
+}
+header .tt-account ul li {
+    font-size: 16px!important;
+}

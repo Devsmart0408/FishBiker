@@ -1,0 +1,260 @@
+<!--<div id="loader-wrapper">
+  <div id="loader">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+</div>-->
+
+<div id="tt-pageContent">
+  <div class="container-indent nomargin">
+    <div class="container-fluid-custom">
+      <div class="row tt-layout-promo-box">
+        <div class="col-sm-12 col-md-6">
+          <a (click)="viewProduct(1)" class="tt-promo-box tt-one-child">
+            <img src="assets/images/promo/index09-promo-img-01.jpg" alt="">
+            <div class="tt-description">
+              <div class="tt-description-wrapper">
+                <div class="tt-background"></div>
+                <div class="tt-title-small">29.99 AED</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <a (click)="viewProduct(1)" class="tt-promo-box tt-one-child">
+            <img  src="assets/images/promo/index09-promo-img-02.jpg" alt="">
+            <div class="tt-description">
+              <div class="tt-description-wrapper">
+                <div class="tt-background"></div>
+                <div class="tt-title-small">70 AED</div>
+              </div>
+            </div>
+          </a>
+          <a (click)="viewProduct(1)" class="tt-promo-box tt-one-child">
+            <img  src="assets/images/promo/index09-promo-img-03.jpg" alt="">
+            <div class="tt-description">
+              <div class="tt-description-wrapper">
+                <div class="tt-background"></div>
+                <div class="tt-title-small">100 AED</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-indent">
+    <div class="container">
+      <div class="tt-block-title">
+        <h1 class="tt-title">FRESH FISH AND SHELLFISH</h1>
+      </div>
+      <div class="tt-text-box01">
+       enjoy delicious lobster, crab, oysters, mussels and cockles or choose from over 39 varieties of fresh fish like mackerel,
+        monkfish, sea bass and pollock - sustainably-sourced and expertly prepared by our fish filleting team.
+        Your fresh seafood delivery will arrive ready to cook or freeze with handy tips and fish recipes ideas for you to try.
+      </div>
+    </div>
+  </div>
+
+  <div class="container-indent">
+    <div class="container container-fluid-custom-mobile-padding">
+      <div class="row">
+        <div class="col-8 col-md-6 col-lg-8">
+          <ul class="nav nav-tabs tt-tabs-default" role="tablist" >
+            <li class="nav-item" *ngFor="let category of productCategories[0].SubCategories">
+              <a class="nav-link active" data-toggle="tab" href="#tt-tab01-01" (click)="setCategory(category.CategoryId)">{{category.CategoryName}}</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tt-tab01-01">
+              <div class="row tt-layout-product-item" >
+                <div class="col-6 col-md-6 col-lg-4" *ngFor="let product of filterProducts(products)" >
+                  <div class="tt-product thumbprod-center" >
+                    <div class="tt-image-box">
+                      <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"
+                        data-tooltip="Quick View"
+                        data-tposition="left">
+                      </a>
+                      <a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
+                      <a (click)="viewProduct(product.ProductId)">
+                        <span class="tt-img"><img [src]="product.ProductImage" alt=""></span>
+                        <span class="tt-img-roll-over"><img [src]="product.ProductImage" alt=""></span>
+                      </a>
+                    </div>
+                    <div class="tt-description">
+                      <div class="tt-row">
+                        <ul class="tt-add-info">
+                          <li><a href="#">{{product.ProductName}}</a></li>
+                          <!-- <li><a href="#">{{product.Attributes.Type[0].PricePerUnit}}</a></li>
+                          <li><a href="#">{{product.Attributes.Type[0].CountryOfOriginId}}</a></li>
+                          <li><a href="#">{{product.Attributes.Type[0].DeliveryType}}</a></li> -->
+                        </ul>
+                        <!-- <div class="tt-rating">
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star"></i>
+                          <i class="icon-star-half"></i>
+                          <i class="icon-star-empty"></i>
+                        </div> -->
+                      </div>
+                      <h2 class="tt-title"><a (click)="viewProduct(1)">{{product.ProductId}}</a></h2>
+                      <div class="tt-price">
+                        <!--{{product.Attributes.Type[0].PricePerUnit}}-->
+                      </div>
+                      <div class="tt-product-inside-hover">
+                        <div class="tt-row-btn">
+                          <a href="." (click)="AddToCart(product)" data-backdrop="false" class="tt-btn-addtocart thumbprod-button-bg"
+                            data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a>
+                        </div>
+                        <div class="tt-row-btn">
+                          <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
+                          <a href="#" class="tt-btn-wishlist"></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4 col-md-6 col-lg-4">
+          <h1 class="tt-title-subpages">Your cart</h1>
+          <div class="tt-shopcart-table-02">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <h2 class="tt-title">
+                      <a href="#">Shakalie Fish</a>
+                    </h2>
+                    <ul class="tt-list-description">
+                      <li>Big</li>
+                    </ul>
+                    <ul class="tt-list-parameters">
+                      <li>
+                        <div class="tt-price">
+                          124 AED
+                        </div>
+                      </li>
+                      <li>
+                        <div class="detach-quantity-mobile"></div>
+                      </li>
+                      <li>
+                        <div class="tt-price subtotal">
+                          124 AED
+                        </div>
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <div class="tt-price">
+                       124 AED
+                    </div>
+                  </td>
+                  <td>
+                    <div class="detach-quantity-desctope">
+                      <div class="tt-input-counter style-01">
+                        <span class="minus-btn"></span>
+                        <input type="text" value="1" size="5">
+                        <span class="plus-btn"></span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="tt-price subtotal">
+                      124 AED
+                    </div>
+                  </td>
+                  <td>
+                    <a href="#" class="tt-btn-close"></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tt-shopcart-box tt-boredr-large">
+            <table class="tt-shopcart-table01">
+              <tbody><tr><th>SUBTOTAL</th><td>324 AED</td></tr></tbody><tfoot><tr><th>GRAND TOTAL</th><td>324 AED</td></tr></tfoot>
+            </table><a href="#" class="btn btn-lg">
+              <span class="icon icon-check_circle"></span>PROCEED TO CHECKOUT</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-indent">
+    <div class="container">
+      <div class="tt-slider-fullwidth arrow-location-center-02 slick-animated-show-js">
+        <div class="item">
+          <a href="blog-single-post.html" class="tt-content-info">
+            <h2 class="tt-title">Lovely and fresh</h2>
+            <p>
+              Lovely and fresh. Very quick delivery and perfectly packaged.
+              What we have eaten so far has been fab. Five star company.
+              I am looking forward to ordering again.
+              Thank you all so much.
+            </p>
+            <div class="tt-subscription">
+              <div class="tt-text-large">
+                Aman Amin
+              </div>
+              <div class="tt-text-small">Customer</div>
+            </div>
+          </a>
+        </div>
+        <div class="item">
+          <a href="blog-single-post.html" class="tt-content-info">
+            <h2 class="tt-title">Everything went well</h2>
+            <p>
+              Everything went well - from ordering from the website (and believe me I can easily make a hash of that kind of thing!) to the delivery.
+              The fish arrived in a sealed polystyrene box ready to put into the freezer.The salmon fillets were delicious!
+              I will certainly be ordering again.
+            </p>
+            <div class="tt-subscription">
+              <div class="tt-text-lage">
+                Liz Jones
+              </div>
+              <div class="tt-text-small">Customer</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-indent">
+    <div class="container">
+      <div class="row tt-carousel-brands arrow-location-center-02 tt-arrow-hover slick-animated-show-js">
+        <div>
+          <a href="#"><img src="assets/images/custom/brand-img-01.png" alt=""></a>
+        </div>
+        <div>
+          <a href="#"><img src="assets/images/custom/brand-img-05.png" alt=""></a>
+        </div>
+        <div>
+          <a href="#"><img src="assets/images/custom/brand-img-06.png" alt=""></a>
+        </div>
+        <div>
+          <a href="#"><img src="assets/images/custom/brand-img-02.png" alt=""></a>
+        </div>
+        <div>
+          <a href="#"><img src="assets/images/custom/brand-img-07.png" alt=""></a>
+        </div>
+        <div>
+          <a href="#"><img src="assets/images/custom/brand-img-04.png" alt=""></a>
+        </div>
+        <div>
+          <a href="#"><img src="assets/images/custom/brand-img-03.png" alt=""></a>
+        </div>
+        <div>
+          <a href="#"><img src="assets/images/custom/brand-img-08.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

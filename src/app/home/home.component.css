@@ -1,0 +1,17 @@
+.tt-title-subpages {
+  margin: 0!important;
+  border: none;
+  background: #2879fe;
+  color: white;
+  padding: 10px;
+}
+
+.tt-shopcart-table-02 table tr {
+  border-top: none;
+}
+
+.tt-shopcart-table-02 table td {
+  width: auto;
+  min-width: auto;
+  margin: 0;
+}
