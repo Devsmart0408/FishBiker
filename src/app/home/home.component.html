@@ -129,8 +129,8 @@
           <h1 class="tt-title-subpages">Your cart</h1>
           <div class="tt-shopcart-table-02">
             <table>
-              <tbody>
-                <tr *ngFor="let item of shoppingCart.Products">
+              <tbody *ngIf="shoppingCart != null">
+                <tr *ngFor="let item of shoppingCart.Products; let index = index">
                   <td>
                     <h2 class="tt-title">
                       <a>{{item.Product.ProductName}}</a>
@@ -147,9 +147,9 @@
                   <td>
                     <div class="detach-quantity-desctope">
                       <div class="tt-input-counter style-01">
-                        <span class="minus-btn"></span>
+                        <span class="minus-btn" (click)="removeCartCount(item)"></span>
                         <input type="text" [value]="item.Count" size="100">
-                        <span class="plus-btn"></span>
+                        <span class="plus-btn" (click)="addCartCount(item)"></span>
                       </div>
                     </div>
                   </td>
@@ -159,7 +159,7 @@
                     </div>
                   </td>
                   <td>
-                    <a class="tt-btn-close"></a>
+                    <a (click)="deleteCart(item)" class="tt-btn-close"></a>
                   </td>
                 </tr>
               </tbody>

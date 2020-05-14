@@ -42,7 +42,7 @@ export class CartModalComponent implements OnInit {
     let get_shoppingCart = null;
 
     get_shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
-    
+
     if(get_shoppingCart == null || Object.keys(get_shoppingCart).length === 0) {
       this.shoppingCart.Id = '';
       this.shoppingCart.Products = Array();
@@ -50,6 +50,8 @@ export class CartModalComponent implements OnInit {
       this.shoppingCart.Note = '';
       this.shoppingCart.GrandTotal = 0;
       this.shoppingCart.Count = '';
+    }else {
+      this.shoppingCart = get_shoppingCart;
     }
 
     let exist_count = 0;
@@ -80,7 +82,6 @@ export class CartModalComponent implements OnInit {
       this.shoppingCart.Products.push(this.cartProduct);
     }
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
-    //localStorage.setItem(ConstValue.ShoppingCart, '{}');
     this.cartmodal.close();
     const scartmodalCharge = this.modalService.open(SuccessCartModalComponent);
     scartmodalCharge.componentInstance.product = product;

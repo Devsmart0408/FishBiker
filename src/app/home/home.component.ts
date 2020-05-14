@@ -68,9 +68,11 @@ export class HomeComponent implements OnInit
     let totalCounts = 0;
     let get_shoppingCart;
     get_shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
+
     if(get_shoppingCart){
       this.shoppingCart = get_shoppingCart;
     }
+
     if(this.shoppingCart != null && Object.keys(this.shoppingCart).length !== 0) {
       this.shoppingCart.Products.forEach(function(item, index, array) {
         carttotalPrice = carttotalPrice + item.Count * item.PricePerUnit;          
@@ -83,6 +85,9 @@ export class HomeComponent implements OnInit
   showCartModal(product: Product) {
     const modalCharge = this.modalService.open(CartModalComponent);
     modalCharge.componentInstance.product = product;
+    modalCharge.result.then(product => {
+      this.getAllShoppingcarts();
+    }, (reason) => {})
   }
 
   goToShoppingCart(shoppingCart: ShoppingCart) {
@@ -99,6 +104,41 @@ export class HomeComponent implements OnInit
   viewQuick(product: Product) {
     const modalCharge = this.modalService.open(QuickModalComponent);
     modalCharge.componentInstance.product = product;
+    modalCharge.result.then(product => {
+      this.getAllShoppingcarts();
+    }, (reason) => {})
   }
 
+  addCartCount(product: any) {
+    this.shoppingCart.Products.forEach(function(item, index, array) {
+      if(item.Product.ProductId == product.Product.ProductId && item.AttributeId == product.AttributeId) {
+        item.Count = item.Count + 1;
+        return;
+      }
+    })
+    localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
+    this.getAllShoppingcarts();
+  }
+  removeCartCount(product: any) {
+    this.shoppingCart.Products.forEach(function(item, index, array) {
+      if(item.Product.ProductId == product.Product.ProductId && item.AttributeId == product.AttributeId) {
+        if(item.Count > 0) {
+          item.Count = item.Count - 1;
+          return;
+        }
+      }
+    })
+    localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
+    this.getAllShoppingcarts();
+  }
+  deleteCart(product: any) {
+    this.shoppingCart.Products.forEach(function(item, index, array) {
+      if(item.Product.ProductId == product.Product.ProductId && item.AttributeId == product.AttributeId) {
+        array.splice(0, 1);
+        return;
+      }
+    })
+    localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
+    this.getAllShoppingcarts();
+  }
 }

@@ -2071,11 +2071,11 @@
     };
     //input-counter
     function ttInputCounter() {
-        blocks.ttInputCounter.find('.minus-btn, .plus-btn').on('click',function(e) {
-            var $input = $(this).parent().find('input');
-            var count = parseInt($input.val(), 10) + parseInt(e.currentTarget.className === 'plus-btn' ? 1 : -1, 10);
-            $input.val(count).change();
-        });
+        // blocks.ttInputCounter.find('.minus-btn, .plus-btn').on('click',function(e) {
+        //     var $input = $(this).parent().find('input');
+        //     var count = parseInt($input.val(), 10) + parseInt(e.currentTarget.className === 'plus-btn' ? 1 : -1, 10);
+        //     $input.val(count).change();
+        // });
         blocks.ttInputCounter.find("input").change(function() {
             var _ = $(this);
             var min = 1;

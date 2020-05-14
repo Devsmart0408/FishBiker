@@ -48,22 +48,20 @@ export class QuickModalComponent implements OnInit {
     this.countInput[index] = this.countInput[index] - 1;
   }
   
-  // QuickAddToCart(product: any, cartProduct: any, index: number){
-  //   console.log(product);
-  //   console.log(this.countInput[index]);
-  // }
   QuickAddToCart(product: any, cartProduct: any, index: number){
     let count = this.countInput[index];
-    this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
+    let get_shoppingCart;
+    get_shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
 
-    if(Object.keys(this.shoppingCart).length === 0) {
-      console.log(this.shoppingCart);
+    if(get_shoppingCart == null || Object.keys(get_shoppingCart).length === 0) {
       this.shoppingCart.Id = '';
       this.shoppingCart.Products = Array();
       this.shoppingCart.Total = 0;
       this.shoppingCart.Note = '';
       this.shoppingCart.GrandTotal = 0;
       this.shoppingCart.Count = '';
+    }else {
+      this.shoppingCart = get_shoppingCart;
     }
 
     let exist_count = 0;
