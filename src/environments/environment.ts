@@ -4,9 +4,12 @@
 
 export const environment = {
   production: false,
-  apiEndpointRoot: 'https://dev.novacept.net',
-  apiEndPointEcommerce: 'https://dev.novacept.net/ecommerce',
-  apiEndPointStatics: 'https://dev.novacept.net/statics',
+  // apiEndpointRoot: 'https://dev.novacept.net',
+  // apiEndPointEcommerce: 'https://dev.novacept.net/ecommerce',
+  // apiEndPointStatics: 'https://dev.novacept.net/statics',
+  apiEndpointRoot: 'https://api.novacept.net/ecommerce',
+  apiEndPointEcommerce: 'https://api.novacept.net/ecommerce',
+  apiEndPointStatics: 'https://api.novacept.net/ecommerce',
   currencyId: 'AED'
 };
 

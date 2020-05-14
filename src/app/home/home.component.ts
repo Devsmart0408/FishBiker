@@ -66,8 +66,12 @@ export class HomeComponent implements OnInit
   getAllShoppingcarts() {
     let carttotalPrice = 0;
     let totalCounts = 0;
-    this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
-    if(Object.keys(this.shoppingCart).length !== 0) {
+    let get_shoppingCart;
+    get_shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
+    if(get_shoppingCart){
+      this.shoppingCart = get_shoppingCart;
+    }
+    if(this.shoppingCart != null && Object.keys(this.shoppingCart).length !== 0) {
       this.shoppingCart.Products.forEach(function(item, index, array) {
         carttotalPrice = carttotalPrice + item.Count * item.PricePerUnit;          
         totalCounts = totalCounts + 1;

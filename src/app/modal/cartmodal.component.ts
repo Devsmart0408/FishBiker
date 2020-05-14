@@ -39,10 +39,11 @@ export class CartModalComponent implements OnInit {
   }
   AddToCart(product: any, count: number) {
     let addSelectedAttr = this.selectedAttr;
-    this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
+    let get_shoppingCart = null;
 
-    if(Object.keys(this.shoppingCart).length === 0) {
-      console.log(this.shoppingCart);
+    get_shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
+    
+    if(get_shoppingCart == null || Object.keys(get_shoppingCart).length === 0) {
       this.shoppingCart.Id = '';
       this.shoppingCart.Products = Array();
       this.shoppingCart.Total = 0;
