@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked } from '@
 import { Router } from '@angular/router';
 import { HeaderService } from '../services/header.service';
 import { ProductService } from '../services/product.service';
+import { ShoppingCartService } from '../services/shoppingcart.service';
 import { Product } from '../model/product';
 import { Tenant } from '../model/tenant';
 import { ProductCategory } from '../model/productCategory';
@@ -23,10 +24,12 @@ export class HomeComponent implements OnInit
   selectCategoryId : any;  
 
   
-  constructor(private router: Router, private headerService: HeaderService, private productService: ProductService) {
+  constructor(private router: Router, 
+              private headerService: HeaderService, 
+              private productService: ProductService,
+              private shoppingCartService: ShoppingCartService) {
     this.shoppingCart = new ShoppingCart();
     this.shoppingCart.Products = [];
-
   }
 
   
@@ -34,6 +37,7 @@ export class HomeComponent implements OnInit
   ngOnInit() {
     this.getProductCategories();
     this.getAllProducts();
+    this.getAllShoppingcarts();
   }
 
 
@@ -50,7 +54,11 @@ export class HomeComponent implements OnInit
   getAllProducts() {
     this.products = JSON.parse(localStorage.getItem(ConstValue.Product));
   }
+  getAllShoppingcarts() {
+    this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
+    console.log(this.goToShoppingCart);
 
+  }
   AddToCart(product: Product) {
     this.shoppingCart.Products.push(product);
   }

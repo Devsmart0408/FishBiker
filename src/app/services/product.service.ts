@@ -20,6 +20,8 @@ export class ProductService {
             .set("X-Api-Key", "95rZwFqA3RzSu26JNg4bCU92sD2nWv4e")
         }
       ).toPromise().then((res: any) => {
+        console.log('service');
+        console.log(res);
         resolve(res);
         localStorage.setItem(ConstValue.ProductCategory, JSON.stringify(res.Data));
       },

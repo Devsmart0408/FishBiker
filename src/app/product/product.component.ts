@@ -10,7 +10,7 @@ import { Product } from '../model/product';
 })
 export class ProductComponent implements OnInit {
   productId: number;
-  productObj: Product;
+  productObj: any;
 
   constructor(private activatedRoute: ActivatedRoute, private productService: ProductService) {
 
@@ -19,7 +19,9 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.productId) {
+      
       this.productObj = this.getProductById(this.productId);
+      console.log(this.productObj);
     }
   }
 

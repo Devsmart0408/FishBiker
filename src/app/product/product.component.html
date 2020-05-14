@@ -30,11 +30,25 @@
               </ul>
             </div>
             <h1 class="tt-title">{{productObj.ProductName}}</h1>
+            <div class="tt-add-info">
+              <ul class="tt-add-info" *ngIf="productObj.Attributes.Type">
+                <li>{{productObj.Attributes.Type[0].Attribute}}</li>
+                <li>{{productObj.Attributes.Type[0].PricePerUnit}}</li>
+                <li>{{productObj.Attributes.Type[0].CountryOfOriginId}}</li>
+                <li>{{productObj.Attributes.Type[0].DeliveryType}}</li>
+              </ul>
+              <ul class="tt-add-info" *ngIf="productObj.Attributes.Size">
+                <li>{{productObj.Attributes.Size[0].Attribute}}</li>
+                <li>{{productObj.Attributes.Size[0].PricePerUnit}}</li>
+                <li>{{productObj.Attributes.Size[0].CountryOfOriginId}}</li>
+                <li>{{productObj.Attributes.Size[0].DeliveryType}}</li>
+              </ul>
+            </div>
             <div class="tt-price">
               <span class="new-price"></span>
               <span class="old-price"></span>
             </div>
-            <div class="tt-review">
+            <!-- <div class="tt-review">
               <div class="tt-rating">
                 <i class="icon-star"></i>
                 <i class="icon-star"></i>
@@ -43,11 +57,9 @@
                 <i class="icon-star-empty"></i>
               </div>
               <a href="#">(1 Customer Review)</a>
-            </div>
+            </div> -->
             <div class="tt-wrapper">
-              Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
             </div>
-            
             <div class="tt-wrapper">
               <div class="tt-row-custom-01">
                 <div class="col-item">
@@ -67,15 +79,6 @@
                 <li><a class="btn-link" href="#"><i class="icon-n-072"></i>ADD TO WISH LIST</a></li>
               </ul>
             </div>
-            <div class="tt-wrapper">
-              <div class="tt-add-info">
-                <ul>
-                  <li><span>Vendor:</span> Polo</li>
-                  <li><span>Product Type:</span> T-Shirt</li>
-                  <li><span>Tag:</span> <a href="#">T-Shirt</a>, <a href="#">Women</a>, <a href="#">Top</a></li>
-                </ul>
-              </div>
-            </div>
             <div class="tt-collapse-block">
               <div class="tt-item active">
                 <div class="tt-collapse-title">DESCRIPTION</div>
@@ -83,7 +86,7 @@
                   {{productObj.ProductName}}
                 </div>
               </div>
-              <div class="tt-item">
+              <!-- <div class="tt-item">
                 <div class="tt-collapse-title">ADDITIONAL INFORMATION</div>
                 <div class="tt-collapse-content">
                   <table class="tt-table-03">
@@ -103,7 +106,7 @@
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
