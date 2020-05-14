@@ -12,6 +12,7 @@ import { ConstValue } from '../helpers/constValue';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartModalComponent } from '../modal/cartmodal.component';
 import { SuccessCartModalComponent } from '../modal/successcartmodal.component';
+import { QuickModalComponent } from '../modal/quickmodal.component';
 
 @Component({
   selector: 'app-home',
@@ -77,7 +78,8 @@ export class HomeComponent implements OnInit
   }
 
   viewQuick(product: Product) {
-    
+    const modalCharge = this.modalService.open(QuickModalComponent);
+    modalCharge.componentInstance.product = product;
   }
 
 }

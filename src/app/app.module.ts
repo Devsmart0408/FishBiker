@@ -25,7 +25,7 @@ import { ApiComponent } from './_apis/api.component';
 import { ChildComponent } from './modal/child.component';
 import { CartModalComponent } from './modal/cartmodal.component';
 import { SuccessCartModalComponent } from './modal/successcartmodal.component';
-
+import { QuickModalComponent } from './modal/quickmodal.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import { SuccessCartModalComponent } from './modal/successcartmodal.component';
     OrderComponent,
     ChildComponent,
     CartModalComponent,
-    SuccessCartModalComponent
+    SuccessCartModalComponent,
+    QuickModalComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,7 @@ import { SuccessCartModalComponent } from './modal/successcartmodal.component';
     NgbModule
   ],
   providers: [HeaderService, AuthenticationService, ShoppingCartService, ProductService, ErrorInterceptorProvider],
-  entryComponents: [CartModalComponent, SuccessCartModalComponent],
+  entryComponents: [CartModalComponent, SuccessCartModalComponent,QuickModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

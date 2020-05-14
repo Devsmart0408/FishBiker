@@ -12,10 +12,10 @@ import { ConstValue } from '../helpers/constValue';
 import { SuccessCartModalComponent } from '../modal/successcartmodal.component';
 
 @Component({
-  templateUrl: "./cartmodal.component.html"
+  templateUrl: "./quickmodal.component.html"
 })
 
-export class CartModalComponent implements OnInit {
+export class QuickModalComponent implements OnInit {
   
   public product: any;
   public shoppingCart: ShoppingCart;
@@ -23,7 +23,7 @@ export class CartModalComponent implements OnInit {
   public selectedAttr: any;
   count: number;
 
-  constructor(public cartmodal: NgbActiveModal, private modalService: NgbModal) { 
+  constructor(public quickmodal: NgbActiveModal, private modalService: NgbModal) { 
     this.shoppingCart = new ShoppingCart();
     this.cartProduct = new CartProduct();
   }
@@ -37,7 +37,7 @@ export class CartModalComponent implements OnInit {
   selectAttr() {
     console.log(this.selectedAttr);
   }
-  AddToCart(product: any, count: number) {
+  QuickAddToCart(product: any, count: number) {
     let addSelectedAttr = this.selectedAttr;
     this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
 
@@ -80,10 +80,10 @@ export class CartModalComponent implements OnInit {
     }
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
     //localStorage.setItem(ConstValue.ShoppingCart, '{}');
-    this.cartmodal.close();
-    const scartmodalCharge = this.modalService.open(SuccessCartModalComponent);
-    scartmodalCharge.componentInstance.product = product;
-    scartmodalCharge.componentInstance.addAttribute = this.selectedAttr;
+    this.quickmodal.close();
+    // const scartmodalCharge = this.modalService.open(SuccessCartModalComponent);
+    // scartmodalCharge.componentInstance.product = product;
+    // scartmodalCharge.componentInstance.addAttribute = this.selectedAttr;
   }
 
 }
