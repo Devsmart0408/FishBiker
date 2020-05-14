@@ -26,57 +26,46 @@
             <div class="tt-add-info">
               <ul>
                 <li><span>SKU:</span> {{productObj.ProductId}}</li>
-                <li><span>Availability:</span> </li>
+                <li><span>Availability:</span> {{productObj.Attributes.Type ? productObj.Attributes.Type[0].UnitsInStock : productObj.Attributes.Size[0].UnitsInStock}}</li>
               </ul>
             </div>
             <h1 class="tt-title">{{productObj.ProductName}}</h1>
-            <div class="tt-add-info">
-              <ul class="tt-add-info" *ngIf="productObj.Attributes.Type">
-                <li>{{productObj.Attributes.Type[0].Attribute}}</li>
-                <li>{{productObj.Attributes.Type[0].PricePerUnit}}</li>
-                <li>{{productObj.Attributes.Type[0].CountryOfOriginId}}</li>
-                <li>{{productObj.Attributes.Type[0].DeliveryType}}</li>
-              </ul>
-              <ul class="tt-add-info" *ngIf="productObj.Attributes.Size">
-                <li>{{productObj.Attributes.Size[0].Attribute}}</li>
-                <li>{{productObj.Attributes.Size[0].PricePerUnit}}</li>
-                <li>{{productObj.Attributes.Size[0].CountryOfOriginId}}</li>
-                <li>{{productObj.Attributes.Size[0].DeliveryType}}</li>
-              </ul>
-            </div>
             <div class="tt-price">
-              <span class="new-price"></span>
+              <span class="new-price">{{productObj.Attributes.Type ? productObj.Attributes.Type[0].PricePerUnit : productObj.Attributes.Size[0].PricePerUnit}} AED</span>
               <span class="old-price"></span>
             </div>
-            <!-- <div class="tt-review">
-              <div class="tt-rating">
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star"></i>
-                <i class="icon-star-half"></i>
-                <i class="icon-star-empty"></i>
-              </div>
-              <a href="#">(1 Customer Review)</a>
-            </div> -->
+            <div class="tt-add-info">
+              <ul class="tt-add-info" *ngIf="productObj.Attributes.Type">
+                <li>Type: {{productObj.Attributes.Type[0].Attribute}}</li>
+                <li>Country: {{productObj.Attributes.Type[0].CountryOfOriginId}}</li>
+                <li>Delivery: {{productObj.Attributes.Type[0].DeliveryType}}</li>
+              </ul>
+              <ul class="tt-add-info" *ngIf="productObj.Attributes.Size">
+                <li>Size: {{productObj.Attributes.Size[0].Attribute}}</li>
+                <li>Country: {{productObj.Attributes.Size[0].CountryOfOriginId}}</li>
+                <li>Delivery: {{productObj.Attributes.Size[0].DeliveryType}}</li>
+              </ul>
+            </div>
+            
             <div class="tt-wrapper">
             </div>
             <div class="tt-wrapper">
               <div class="tt-row-custom-01">
-                <div class="col-item">
+                <!-- <div class="col-item">
                   <div class="tt-input-counter style-01">
                     <span class="minus-btn"></span>
                     <input type="text" value="1" size="5" />
                     <span class="plus-btn"></span>
                   </div>
-                </div>
-                <div class="col-item">
-                  <a href="#" class="btn btn-lg"><i class="icon-f-39"></i>ADD TO CART</a>
+                </div> -->
+                <div class="col-item" style="width: 100%">
+                  <a (click)="showCartModal(productObj)" class="btn btn-lg" style="color:white!important"><i class="icon-f-39"></i>ADD TO CART</a>
                 </div>
               </div>
             </div>
             <div class="tt-wrapper">
               <ul class="tt-list-btn">
-                <li><a class="btn-link" href="#"><i class="icon-n-072"></i>ADD TO WISH LIST</a></li>
+                <li><a class="btn-link"><i class="icon-n-072"></i>ADD TO WISH LIST</a></li>
               </ul>
             </div>
             <div class="tt-collapse-block">
