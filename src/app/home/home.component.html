@@ -126,50 +126,58 @@
           </div>
         </div>
         <div class="col-4 col-md-6 col-lg-4">
-          <h1 class="tt-title-subpages">Your cart</h1>
-          <div class="tt-shopcart-table-02">
-            <table>
-              <tbody *ngIf="shoppingCart != null">
-                <tr *ngFor="let item of shoppingCart.Products; let index = index">
-                  <td>
-                    <h2 class="tt-title">
-                      <a>{{item.Product.ProductName}}</a>
-                    </h2>
-                    <ul class="tt-list-description">
-                      <li>{{item.Attribute}}</li>
-                    </ul>
-                  </td>
-                  <td>
-                    <div class="tt-price">
-                       {{item.PricePerUnit}} AED
-                    </div>
-                  </td>
-                  <td>
-                    <div class="detach-quantity-desctope">
-                      <div class="tt-input-counter style-01">
-                        <span class="minus-btn" (click)="removeCartCount(item)"></span>
-                        <input type="text" [value]="item.Count" size="100">
-                        <span class="plus-btn" (click)="addCartCount(item)"></span>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="tt-price subtotal">
-                      {{item.PricePerUnit * item.Count}} AED
-                    </div>
-                  </td>
-                  <td>
-                    <a (click)="deleteCart(item)" class="tt-btn-close"></a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="tt-shopcart-box tt-boredr-large">
-            <table class="tt-shopcart-table01">
-              <tbody><tr><th>SUBTOTAL</th><td>{{cartTotalPrice}} AED</td></tr></tbody><tfoot><tr><th>GRAND TOTAL</th><td>{{cartTotalPrice}} AED</td></tr></tfoot>
-            </table><a href="#" class="btn btn-lg">
-              <span class="icon icon-check_circle"></span>PROCEED TO CHECKOUT</a>
+          <div class="sticky-cart">
+            <h1 class="tt-title-subpages">Your cart</h1>
+            <div *ngIf="cartTotalPrice == 0" class="empty-cart"> 
+              <i class="icon-f-39"></i>
+              <p>There are no items in your cart</p>
+            </div>
+            <div *ngIf="cartTotalPrice > 0">
+              <div class="tt-shopcart-table-02">
+                <table>
+                  <tbody *ngIf="shoppingCart != null">
+                    <tr *ngFor="let item of shoppingCart.Products; let index = index">
+                      <td>
+                        <h2 class="tt-title">
+                          <a>{{item.Product.ProductName}}</a>
+                        </h2>
+                        <ul class="tt-list-description">
+                          <li>{{item.Attribute}}</li>
+                        </ul>
+                      </td>
+                      <td>
+                        <div class="tt-price">
+                          {{item.PricePerUnit}} AED
+                        </div>
+                      </td>
+                      <td>
+                        <div class="detach-quantity-desctope">
+                          <div class="tt-input-counter style-01">
+                            <span class="minus-btn" (click)="removeCartCount(item)"></span>
+                            <input type="text" [value]="item.Count" size="100">
+                            <span class="plus-btn" (click)="addCartCount(item)"></span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="tt-price subtotal">
+                          {{item.PricePerUnit * item.Count}} AED
+                        </div>
+                      </td>
+                      <td>
+                        <a (click)="deleteCart(item)" class="tt-btn-close"></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tt-shopcart-box tt-boredr-large">
+                <table class="tt-shopcart-table01">
+                  <tbody><tr><th>SUBTOTAL</th><td>{{cartTotalPrice}} AED</td></tr></tbody><tfoot><tr><th>GRAND TOTAL</th><td>{{cartTotalPrice}} AED</td></tr></tfoot>
+                </table><a href="#" class="btn btn-lg">
+                  <span class="icon icon-check_circle"></span>PROCEED TO CHECKOUT</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

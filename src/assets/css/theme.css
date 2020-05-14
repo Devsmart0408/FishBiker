@@ -40103,8 +40103,8 @@ html:not(.mac):not(.touch-device) .tt-carousel-brands .slick-track {
   background-color: #777878;
 }
 ngb-modal-backdrop {
-  opacity: 0!important;
-  z-index: 0!important;
+  opacity: 0.5!important;
+  z-index: 10!important;
 }
 .addtocart {
   color: white!important;
@@ -40129,4 +40129,15 @@ ngb-modal-backdrop {
 }
 .quick_add_cart {
   color: white!important;
+}
+.empty-cart {
+  text-align: center;
+  padding: 30px 10px;
+}
+.empty-cart i {
+  font-size: 120px!important;
+}
+.sticky-cart {
+  position: sticky;
+  top: 120px;
 }
