@@ -40141,3 +40141,16 @@ ngb-modal-backdrop {
   position: sticky;
   top: 120px;
 }
+.right-side-cart-quantity .tt-input-counter{
+  max-width: 100px!important;
+  min-width: 100px!important;
+}
+.right-side-cart-quantity .tt-input-counter span{
+  width: 35px;
+}
+.right-side-cart-quantity .tt-input-counter span::before{
+  line-height: 40px!important;
+}
+.right-side-cart-quantity .tt-input-counter input{
+  height: 40px;
+}
