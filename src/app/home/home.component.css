@@ -15,3 +15,7 @@
   min-width: auto;
   margin: 0;
 }
+
+.tt-product:not(.tt-view) .tt-description .tt-btn-addtocart.thumbprod-button-bg {
+  cursor: pointer;
+}

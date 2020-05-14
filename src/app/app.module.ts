@@ -23,6 +23,7 @@ import { ProductService } from './services/product.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ApiComponent } from './_apis/api.component';
 import { ChildComponent } from './modal/child.component';
+import { CartModalComponent } from './modal/cartmodal.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ChildComponent } from './modal/child.component';
     NotFoundComponent,
     ContactUsComponent,
     OrderComponent,
-    ChildComponent
+    ChildComponent,
+    CartModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { ChildComponent } from './modal/child.component';
     NgbModule
   ],
   providers: [HeaderService, AuthenticationService, ShoppingCartService, ProductService, ErrorInterceptorProvider],
-  entryComponents: [ChildComponent],
+  entryComponents: [CartModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

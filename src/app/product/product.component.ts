@@ -19,9 +19,7 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.productId) {
-      
       this.productObj = this.getProductById(this.productId);
-      console.log(this.productObj);
     }
   }
 

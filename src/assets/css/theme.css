@@ -40102,3 +40102,10 @@ html:not(.mac):not(.touch-device) .tt-carousel-brands .slick-track {
 .tt-color-bg-18 {
   background-color: #777878;
 }
+ngb-modal-backdrop {
+  opacity: 0!important;
+  z-index: 0!important;
+}
+.addtocart {
+  color: white!important;
+}

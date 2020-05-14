@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" (click)="cartmodal.dismiss('Cross click')" aria-hidden="true"><span class="icon icon-clear"></span></button>
+</div>
+<div class="modal-body">
+  <div class="tt-modal-quickview desctope">
+    <div class="row">
+      <div class="col-12 col-md-12 col-lg-12">
+        <div class="tt-product-single-info">
+          <h2 class="tt-title">Tilapia Fish</h2>
+          <div class="tt-price">
+            <span class="new-price">29 AED</span>
+            <span class="old-price"></span>
+          </div>
+          <div class="tt-swatches-container">
+            <div class="tt-wrapper">
+              <div class="tt-title-options">{{product.Attributes.Type? 'TYPE' : 'SIZE'}}</div>
+              <form class="form-default">
+                <div class="form-group">
+                  <select class="form-control" *ngIf="product.Attributes.Type">
+                    <option *ngFor="let item of product.Attributes.Type" [value]="item.Attribute">{{item.Attribute}}</option>
+                  </select>
+                  <select class="form-control" *ngIf="product.Attributes.Size">
+                    <option *ngFor="let item of product.Attributes.Size" [value]="item.Attribute">{{item.Attribute}}</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="tt-wrapper">
+            <div class="tt-row-custom-01">
+              <div class="col-item">
+                <a (click)="AddToCart(product)" class="btn btn-lg addtocart"><i class="icon-f-39"></i>ADD TO CART</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
