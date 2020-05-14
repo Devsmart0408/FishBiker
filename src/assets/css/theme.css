@@ -40109,3 +40109,9 @@ ngb-modal-backdrop {
 .addtocart {
   color: white!important;
 }
+.process_btn {
+  color: white!important;
+}
+.success_productname {
+  font-size: 22px!important;
+}

@@ -11,6 +11,7 @@ import { ConstValue } from '../helpers/constValue';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CartModalComponent } from '../modal/cartmodal.component';
+import { SuccessCartModalComponent } from '../modal/successcartmodal.component';
 
 @Component({
   selector: 'app-home',
@@ -62,22 +63,6 @@ export class HomeComponent implements OnInit
   showCartModal(product: Product) {
     const modalCharge = this.modalService.open(CartModalComponent);
     modalCharge.componentInstance.product = product;
-    // this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
-    // if(Object.keys(this.shoppingCart).length === 0) {
-    //   console.log(this.shoppingCart);
-    //   this.shoppingCart.Id = '';
-    //   this.shoppingCart.Products = Array();
-    //   this.shoppingCart.Total = 0;
-    //   this.shoppingCart.Note = '';
-    //   this.shoppingCart.GrandTotal = 0;
-    //   this.shoppingCart.Count = '';
-    // }
-    // this.cartProduct.Product = product;
-    // this.cartProduct.AttributeId = 1;
-    // this.cartProduct.Count = 1;
-    // this.cartProduct.Type = 'type';
-    // this.shoppingCart.Products.push(this.cartProduct);
-    // localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
   }
 
   goToShoppingCart(shoppingCart: ShoppingCart) {
@@ -91,8 +76,8 @@ export class HomeComponent implements OnInit
     });
   }
 
-  openQuickModal(product: Product) {
-    console.log(product)
+  viewQuick(product: Product) {
+    
   }
 
 }

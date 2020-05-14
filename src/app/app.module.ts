@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ApiComponent } from './_apis/api.component';
 import { ChildComponent } from './modal/child.component';
 import { CartModalComponent } from './modal/cartmodal.component';
+import { SuccessCartModalComponent } from './modal/successcartmodal.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { CartModalComponent } from './modal/cartmodal.component';
     ContactUsComponent,
     OrderComponent,
     ChildComponent,
-    CartModalComponent
+    CartModalComponent,
+    SuccessCartModalComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { CartModalComponent } from './modal/cartmodal.component';
     NgbModule
   ],
   providers: [HeaderService, AuthenticationService, ShoppingCartService, ProductService, ErrorInterceptorProvider],
-  entryComponents: [CartModalComponent],
+  entryComponents: [CartModalComponent, SuccessCartModalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
