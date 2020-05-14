@@ -1,15 +1,19 @@
 import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { ConstValue } from '../helpers/constValue';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { HeaderService } from '../services/header.service';
 import { ProductService } from '../services/product.service';
 import { ShoppingCartService } from '../services/shoppingcart.service';
-import { Product } from '../model/product';
+
 import { Tenant } from '../model/tenant';
 import { ProductCategory } from '../model/productCategory';
+import { Product } from '../model/product';
 import { ShoppingCart, CartProduct} from '../model/shoppingCart';
-import { ConstValue } from '../helpers/constValue';
 
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { CartModalComponent } from '../modal/cartmodal.component';
 import { SuccessCartModalComponent } from '../modal/successcartmodal.component';
 import { QuickModalComponent } from '../modal/quickmodal.component';
