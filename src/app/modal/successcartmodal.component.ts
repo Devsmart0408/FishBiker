@@ -59,4 +59,5 @@ export class SuccessCartModalComponent implements OnInit {
     this.scartmodal.close();
   }
 
+
 }

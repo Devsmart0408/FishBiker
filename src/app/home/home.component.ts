@@ -25,9 +25,11 @@ export class HomeComponent implements OnInit
   tenant: Tenant;
   productCategories: ProductCategory[]
   shoppingCart: ShoppingCart;
+  cartTotalPrice: number;
+  cartTotalCount: number;
   cartProduct: CartProduct;
   selectCategoryId : any;  
- 
+
   constructor(private router: Router, 
               private headerService: HeaderService, 
               private productService: ProductService,
@@ -53,13 +55,26 @@ export class HomeComponent implements OnInit
     this.selectCategoryId = id;
   }
   filterProducts(your_collection): any[] {  
-    return your_collection.filter(i => i.CategoryId === this.selectCategoryId);
+    if(your_collection){
+      return your_collection.filter(i => i.CategoryId === this.selectCategoryId);
+    }
+    
   }
   getAllProducts() {
     this.products = JSON.parse(localStorage.getItem(ConstValue.Product));
   }
   getAllShoppingcarts() {
+    let carttotalPrice = 0;
+    let totalCounts = 0;
     this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
+    if(Object.keys(this.shoppingCart).length !== 0) {
+      this.shoppingCart.Products.forEach(function(item, index, array) {
+        carttotalPrice = carttotalPrice + item.Count * item.PricePerUnit;          
+        totalCounts = totalCounts + 1;
+      })
+    } 
+    this.cartTotalPrice = carttotalPrice;
+    this.cartTotalCount = totalCounts;
   }
   showCartModal(product: Product) {
     const modalCharge = this.modalService.open(CartModalComponent);

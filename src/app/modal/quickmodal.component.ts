@@ -20,25 +20,40 @@ export class QuickModalComponent implements OnInit {
   public product: any;
   public shoppingCart: ShoppingCart;
   public cartProduct: CartProduct;
-  public selectedAttr: any;
+  public selectedAttrs: any;
   count: number;
+  countInput: any;
 
   constructor(public quickmodal: NgbActiveModal, private modalService: NgbModal) { 
     this.shoppingCart = new ShoppingCart();
     this.cartProduct = new CartProduct();
+    this.countInput = [];
   }
   
   ngOnInit() { 
     if(this.product.Attributes.Type)
-      this.selectedAttr = this.product.Attributes.Type[0];
+      this.selectedAttrs = this.product.Attributes.Type;
     if(this.product.Attributes.Size)
-      this.selectedAttr = this.product.Attributes.Size[0];
+      this.selectedAttrs = this.product.Attributes.Size;
+    let countInputArray = [];
+    this.selectedAttrs.forEach(function(item, index, array) {
+        countInputArray[index] = 1;
+    })
+    this.countInput = countInputArray;
   }
-  selectAttr() {
-    console.log(this.selectedAttr);
+  addCartCount(index: number) {
+    this.countInput[index] = this.countInput[index] + 1;
   }
-  QuickAddToCart(product: any, count: number) {
-    let addSelectedAttr = this.selectedAttr;
+  removeCartCount(index: number) {
+    this.countInput[index] = this.countInput[index] - 1;
+  }
+  
+  // QuickAddToCart(product: any, cartProduct: any, index: number){
+  //   console.log(product);
+  //   console.log(this.countInput[index]);
+  // }
+  QuickAddToCart(product: any, cartProduct: any, index: number){
+    let count = this.countInput[index];
     this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
 
     if(Object.keys(this.shoppingCart).length === 0) {
@@ -53,8 +68,7 @@ export class QuickModalComponent implements OnInit {
 
     let exist_count = 0;
     this.shoppingCart.Products.forEach(function(item, index, array) {
-      if(item.Product.ProductId == product.ProductId && item.AttributeId == addSelectedAttr.AttributeId) {
-        console.log(item);
+      if(item.Product.ProductId == product.ProductId && item.AttributeId == cartProduct.AttributeId) {
         item.Count = item.Count + count;
         exist_count = exist_count + 1; 
       }
@@ -62,28 +76,26 @@ export class QuickModalComponent implements OnInit {
 
     if(exist_count == 0) {
       this.cartProduct.Product = product;
-      this.cartProduct.AttributeId = this.selectedAttr.AttributeId;
-      this.cartProduct.PricePerUnit = this.selectedAttr.PricePerUnit;
+      this.cartProduct.AttributeId = cartProduct.AttributeId;
+      this.cartProduct.PricePerUnit = cartProduct.PricePerUnit;
       this.cartProduct.Count = count;
       this.cartProduct.Type = product.Attributes.Type? 'Type' : 'Size';
-      this.cartProduct.Attribute = this.selectedAttr.Attribute;
-      this.cartProduct.CountryOfOriginId = this.selectedAttr.CountryOfOriginId;
-      this.cartProduct.DeliveryType = this.selectedAttr.DeliveryType;
-      this.cartProduct.IsSpecialOffer = this.selectedAttr.IsSpecialOffer;
-      this.cartProduct.MSRP = this.selectedAttr.MSRP;
-      this.cartProduct.MaximumUnitsOfOrder = this.selectedAttr.MaximumUnitsOfOrder;
-      this.cartProduct.MaximumUnitsOfOrder = this.selectedAttr.MaximumUnitsOfOrder;
-      this.cartProduct.MinimumUnitsOfOrder = this.selectedAttr.MinimumUnitsOfOrder;
-      this.cartProduct.Ranking = this.selectedAttr.Ranking;
-      this.cartProduct.UnitsInStock = this.selectedAttr.UnitsInStock;
+      this.cartProduct.Attribute = cartProduct.Attribute;
+      this.cartProduct.CountryOfOriginId = cartProduct.CountryOfOriginId;
+      this.cartProduct.DeliveryType = cartProduct.DeliveryType;
+      this.cartProduct.IsSpecialOffer = cartProduct.IsSpecialOffer;
+      this.cartProduct.MSRP = cartProduct.MSRP;
+      this.cartProduct.MaximumUnitsOfOrder = cartProduct.MaximumUnitsOfOrder;
+      this.cartProduct.MaximumUnitsOfOrder = cartProduct.MaximumUnitsOfOrder;
+      this.cartProduct.MinimumUnitsOfOrder = cartProduct.MinimumUnitsOfOrder;
+      this.cartProduct.Ranking = cartProduct.Ranking;
+      this.cartProduct.UnitsInStock = cartProduct.UnitsInStock;
       this.shoppingCart.Products.push(this.cartProduct);
     }
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
-    //localStorage.setItem(ConstValue.ShoppingCart, '{}');
     this.quickmodal.close();
     // const scartmodalCharge = this.modalService.open(SuccessCartModalComponent);
     // scartmodalCharge.componentInstance.product = product;
     // scartmodalCharge.componentInstance.addAttribute = this.selectedAttr;
   }
-
 }

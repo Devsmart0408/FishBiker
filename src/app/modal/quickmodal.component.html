@@ -7,16 +7,12 @@
   <div class="tt-modal-quickview desctope">
     <div class="row">
       <div class="col-12 col-md-5 col-lg-6">
-        <img src="https://novacept.s3.me-south-1.amazonaws.com/tenants/Ng4bCU92sD2nWv4e/productImages/1.jpg" style="width: 100%" alt="">
-          <!--<div><img src="assets/images/loader.svg" data-src="images/product/product-01-02.jpg" alt=""></div>
-          <div><img src="assets/images/loader.svg" data-src="images/product/product-01-03.jpg" alt=""></div>
-          <div><img src="assets/images/loader.svg" data-src="images/product/product-01-04.jpg" alt=""></div>-->
+        <img [src]="product.ProductImage" style="width: 100%" alt="">
       </div>
       <div class="col-12 col-md-7 col-lg-6">
         <div class="tt-product-single-info">
           <h2 class="tt-title quick_productname">{{product.ProductName}}</h2>
-          <div *ngIf="product.Attributes.Type">
-            <div *ngFor="let type_item of product.Attributes.Type">
+            <div *ngFor="let type_item of selectedAttrs; let index = index;">
               <h5 class="quick_attribute">{{type_item.Attribute}}</h5>
               <div class="tt-price">
                 <span class="new-price">{{type_item.PricePerUnit}} AED</span>
@@ -24,8 +20,8 @@
               <div class="tt-add-info">
                 <ul >
                   <li><span>Availability:</span> {{type_item.UnitsInStock}} in Stock</li>
-                  <li><a>Country: {{type_item.CountryOfOriginId}}</a></li>
-                  <li><a>Delivery: {{type_item.DeliveryType}}</a></li>
+                  <!-- <li><a>Country: {{type_item.CountryOfOriginId}}</a></li>
+                  <li><a>Delivery: {{type_item.DeliveryType}}</a></li> -->
                 </ul>
               </div>
               <!-- <div class="tt-swatches-container">
@@ -46,18 +42,17 @@
                 <div class="tt-row-custom-01">
                   <div class="col-item">
                     <div class="tt-input-counter style-01">
-                      <span class="minus-btn"></span>
-                      <input type="text" value="1" size="5">
-                      <span class="plus-btn"></span>
+                      <span class="minus-btn" (click)="removeCartCount(index)"></span>
+                      <input name=countIndex{{index}} [(ngModel)]="countInput[index]" type="text" [value]="1" size="100">
+                      <span class="plus-btn" (click)="addCartCount(index)"></span>
                     </div>
                   </div>
                   <div class="col-item">
-                    <a href="#" class="btn btn-lg"><i class="icon-f-39"></i>ADD TO CART</a>
+                    <a (click)="QuickAddToCart(product, type_item, index)" class="btn btn-lg quick_add_cart"><i class="icon-f-39"></i>ADD TO CART</a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>

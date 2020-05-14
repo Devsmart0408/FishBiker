@@ -41,6 +41,7 @@ export class ProductService {
         }
       ).toPromise().then((res: any) => {
         resolve(res);
+        console.log(res.Data);
         localStorage.setItem(ConstValue.Product, JSON.stringify(res.Data));
       },
         msg => { reject(msg); });

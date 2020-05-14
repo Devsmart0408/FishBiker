@@ -40119,11 +40119,14 @@ ngb-modal-backdrop {
   margin-bottom: 20px;
 }
 .quick-wrapper {
-  margin-top: 5px;
+  margin-top: 10px!important;
   border-bottom: 1px solid #e9e7e7;
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
 .quick_attribute {
   padding-bottom: 5px!important;
+}
+.quick_add_cart {
+  color: white!important;
 }
