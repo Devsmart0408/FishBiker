@@ -6,7 +6,7 @@ export class ShoppingCart {
   Total: number;
   Note: string;
   GrandTotal: number;
-  Count: string;
+  Count: number;
 }
 export class CartProduct {
   Product: Product;

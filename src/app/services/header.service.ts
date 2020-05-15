@@ -4,6 +4,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { shareReplay, map, publishReplay, refCount } from 'rxjs/operators';
 import { ConstValue } from '../helpers/constValue';
 import { Tenant } from '../model/tenant';
+import { User } from '../model/user';
+import { ShoppingCart } from '../model/shoppingCart';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,30 @@ import { Tenant } from '../model/tenant';
 
 export class HeaderService {
 
+  private ShoppingCartSource = new BehaviorSubject<ShoppingCart>(this.getLocalStorageItemBykey(ConstValue.ShoppingCart));
+  shoppingCart = this.ShoppingCartSource.value;
+  private curUserSource = new BehaviorSubject<User>(this.getLocalStorageItemBykey(ConstValue.User));
+  curUser = this.curUserSource.value;
   private tenantSource = new BehaviorSubject<Tenant>(this.getLocalStorageItemBykey(ConstValue.Tenant));
   currentTenant = this.tenantSource.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.setHeaderShoppingCart()
+  }
+
+  setHeaderShoppingCart() {
+    let carttotalPrice = 0;
+    let totalCounts = 0;
+    this.shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart))
+    if(this.shoppingCart != null && Object.keys(this.shoppingCart).length !== 0) {
+      this.shoppingCart.Products.forEach(function(item, index, array) {
+        carttotalPrice = carttotalPrice + item.Count * item.PricePerUnit;          
+        totalCounts = totalCounts + item.Count;
+      })
+      this.shoppingCart.Count = totalCounts;
+      this.shoppingCart.Total = carttotalPrice;
+    }
+  }
 
   getTenantIdFromServer(domainName: string):Observable<Tenant> {
       return  this.http.post<any>("https://api.novacept.net",

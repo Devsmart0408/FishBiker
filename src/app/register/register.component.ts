@@ -27,6 +27,9 @@ export class RegisterComponent implements OnInit {
     //if (this.authService.currentUserVal) {
     //  this.router.navigate(['/']);
     //}
+    if (this.headerService.curUser) {
+      this.router.navigate(['/']);
+    }
   }
   ngOnInit(): void {
     this.user = this.authService.currentUserVal;

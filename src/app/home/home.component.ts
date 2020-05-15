@@ -11,6 +11,7 @@ import { ShoppingCartService } from '../services/shoppingcart.service';
 import { Tenant } from '../model/tenant';
 import { ProductCategory } from '../model/productCategory';
 import { Product } from '../model/product';
+import { User } from '../model/user';
 import { ShoppingCart, CartProduct} from '../model/shoppingCart';
 
 
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit
   cartTotalCount: number;
   cartProduct: CartProduct;
   selectCategoryId : any;  
+  curUser: User;
 
   constructor(private router: Router, 
               private headerService: HeaderService, 
@@ -50,6 +52,9 @@ export class HomeComponent implements OnInit
     this.getProductCategories();
     this.getAllProducts();
     this.getAllShoppingcarts();
+    if(this.headerService.getLocalStorageItemBykey(ConstValue.User)) {
+      this.curUser = JSON.parse(localStorage.getItem(ConstValue.User));
+    }
   }
   getProductCategories() {
     this.productCategories = JSON.parse(localStorage.getItem(ConstValue.ProductCategory));
@@ -104,6 +109,14 @@ export class HomeComponent implements OnInit
         { id: productId }
     });
   }
+  viewCart() {
+
+    if(this.curUser) {
+      this.router.navigate(['/shoppingcart']);
+    }else {
+      this.router.navigate(['/login']);
+    }
+  }
 
   viewQuick(product: Product) {
     const modalCharge = this.modalService.open(QuickModalComponent);
@@ -121,18 +134,20 @@ export class HomeComponent implements OnInit
       }
     })
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
+    this.headerService.setHeaderShoppingCart();
     this.getAllShoppingcarts();
   }
   removeCartCount(product: any) {
     this.shoppingCart.Products.forEach(function(item, index, array) {
       if(item.Product.ProductId == product.Product.ProductId && item.AttributeId == product.AttributeId) {
-        if(item.Count > 0) {
+        if(item.Count > 1) {
           item.Count = item.Count - 1;
           return;
         }
       }
     })
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
+    this.headerService.setHeaderShoppingCart();
     this.getAllShoppingcarts();
   }
   deleteCart(product: any) {
@@ -143,6 +158,7 @@ export class HomeComponent implements OnInit
       }
     })
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
+    this.headerService.setHeaderShoppingCart();
     this.getAllShoppingcarts();
   }
 }

@@ -10,6 +10,7 @@ import {
 import { ShoppingCart, CartProduct} from '../model/shoppingCart';
 import { ConstValue } from '../helpers/constValue';
 import { SuccessCartModalComponent } from '../modal/successcartmodal.component';
+import { HeaderService } from '../services/header.service';
 
 @Component({
   templateUrl: "./quickmodal.component.html"
@@ -24,7 +25,7 @@ export class QuickModalComponent implements OnInit {
   count: number;
   countInput: any;
 
-  constructor(public quickmodal: NgbActiveModal, private modalService: NgbModal) { 
+  constructor(public headerService: HeaderService, public quickmodal: NgbActiveModal, private modalService: NgbModal) { 
     this.shoppingCart = new ShoppingCart();
     this.cartProduct = new CartProduct();
     this.countInput = [];
@@ -59,7 +60,7 @@ export class QuickModalComponent implements OnInit {
       this.shoppingCart.Total = 0;
       this.shoppingCart.Note = '';
       this.shoppingCart.GrandTotal = 0;
-      this.shoppingCart.Count = '';
+      this.shoppingCart.Count = 0;
     }else {
       this.shoppingCart = get_shoppingCart;
     }
@@ -91,6 +92,7 @@ export class QuickModalComponent implements OnInit {
       this.shoppingCart.Products.push(this.cartProduct);
     }
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
+    this.headerService.setHeaderShoppingCart();
     this.quickmodal.close();
     // const scartmodalCharge = this.modalService.open(SuccessCartModalComponent);
     // scartmodalCharge.componentInstance.product = product;

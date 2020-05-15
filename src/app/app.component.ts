@@ -8,9 +8,12 @@ import { TenantDetails } from './model/TenantDetails';
 import { ProductCategory } from './model/productCategory';
 import { ConstValue } from './helpers/constValue';
 import { Product } from './model/product';
+import { User } from './model/user';
 import { Tenant } from './model/tenant';
 import { AuthenticationService } from './services/authentication.service';
 import { ProductService } from './services/product.service';
+
+import { ShoppingCart, CartProduct} from './model/shoppingCart';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +21,10 @@ import { ProductService } from './services/product.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  
+  shoppingCart: ShoppingCart;
+  cartTotalPrice: number;
+  cartTotalCount: number;
 
   currencies: Currency[];
   languages: Language[];
@@ -26,13 +33,15 @@ export class AppComponent implements OnInit {
   products: Product[];
   tenantDetails: TenantDetails;
   tenant: Tenant;
+  curUser: User;
 
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private headerService: HeaderService,
+    public headerService: HeaderService,
     private productService: ProductService)
   {
+
 
     if (!this.headerService.getLocalStorageItemBykey(ConstValue.Product)) {
 
@@ -49,14 +58,35 @@ export class AppComponent implements OnInit {
 
       //hard-code languages and currencies
     }
-    //else {
-    //  this.getProductCategories();
-    //  this.getAllProducts();
-    //}
+    
   }
 
   ngOnInit() : void {
     import('../assets/js/main.js');
+    this.getAllShoppingcarts();
+    if(this.headerService.getLocalStorageItemBykey(ConstValue.User)) {
+      this.curUser = JSON.parse(localStorage.getItem(ConstValue.User));
+    }
+  }
+
+  getAllShoppingcarts() {
+    let carttotalPrice = 0;
+    let totalCounts = 0;
+    let get_shoppingCart;
+    get_shoppingCart = JSON.parse(localStorage.getItem(ConstValue.ShoppingCart));
+
+    if(get_shoppingCart){
+      this.shoppingCart = get_shoppingCart;
+    }
+
+    if(this.shoppingCart != null && Object.keys(this.shoppingCart).length !== 0) {
+      this.shoppingCart.Products.forEach(function(item, index, array) {
+        carttotalPrice = carttotalPrice + item.Count * item.PricePerUnit;          
+        totalCounts = totalCounts + item.Count;
+      })
+    } 
+    this.cartTotalPrice = carttotalPrice;
+    this.cartTotalCount = totalCounts;
   }
 
   getCurrencies() {
@@ -89,6 +119,7 @@ export class AppComponent implements OnInit {
     this.authService.logout().then((result: any) => {
       if (result.Success) {
         this.router.navigateByUrl("/")
+        this.headerService.curUser = null;
       }
     })
   }

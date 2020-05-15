@@ -23,7 +23,7 @@
       <li>
         <a (click)="viewPage('/contactus')">CONTACT US</a>
       </li>
-      <li>
+      <li *ngIf="!curUser">
         <a (click)="viewPage('login')">LOGIN/REGISTER</a>
       </li>
     </ul>
@@ -177,7 +177,7 @@
             <div class="tt-cart tt-dropdown-obj" data-tooltip="Cart" data-tposition="bottom">
               <button class="tt-dropdown-toggle">
                 <i class="icon-f-39"></i>
-                <span class="tt-badge-cart">3</span>
+                <span class="tt-badge-cart">{{headerService.shoppingCart.Count}}</span>
               </button>
               <div class="tt-dropdown-menu">
                 <div class="tt-mobile-add">
@@ -187,56 +187,34 @@
                 <div class="tt-dropdown-inner">
                   <div class="tt-cart-layout">
                     <!-- layout emty cart -->
-                    <!-- <a href="empty-cart.html" class="tt-cart-empty">
+                    <a class="tt-cart-empty" *ngIf="headerService.shoppingCart.Count == 0">
                       <i class="icon-f-39"></i>
                       <p>No Products in the Cart</p>
-                    </a> -->
+                    </a>
                     <div class="tt-cart-content">
-                      <div class="tt-cart-list">
-                        <div class="tt-item">
-                          <a href="product.html">
+                      <div class="tt-cart-list" *ngIf="headerService.shoppingCart != null">
+                        <div class="tt-item" *ngFor="let item of headerService.shoppingCart.Products; let index = index" >
+                          <a (click)="viewProduct(item.Product.ProductId)" style="cursor:pointer;">
                             <div class="tt-item-img">
-                              <img src="assets/images/loader.svg" data-src="assets/images/product/product-01.jpg" alt="">
+                              <img [src]="item.Product.ProductImage" alt="">
                             </div>
                             <div class="tt-item-descriptions">
-                              <h2 class="tt-title">Product 1</h2>
+                              <h2 class="tt-title">{{item.Product.ProductName}}</h2>
                               <ul class="tt-add-info">
-                                <li>Yellow, Material 2, Size 58,</li>
-                                <li>Vendor: Addidas</li>
+                                <li>{{item.Attribute}}</li>
                               </ul>
-                              <div class="tt-quantity">1 X</div> <div class="tt-price">AED 12</div>
+                              <div class="tt-quantity">{{item.Count}} X</div> <div class="tt-price">AED {{item.PricePerUnit}}</div>
                             </div>
                           </a>
-                          <div class="tt-item-close">
-                            <a href="#" class="tt-btn-close"></a>
-                          </div>
-                        </div>
-                        <div class="tt-item">
-                          <a href="product.html">
-                            <div class="tt-item-img">
-                              <img src="assets/images/loader.svg" data-src="assets/images/product/product-02.jpg" alt="">
-                            </div>
-                            <div class="tt-item-descriptions">
-                              <h2 class="tt-title">Product 1</h2>
-                              <ul class="tt-add-info">
-                                <li>Yellow, Material 2, Size 58,</li>
-                                <li>Vendor: Addidas</li>
-                              </ul>
-                              <div class="tt-quantity">1 X</div> <div class="tt-price">AED 18</div>
-                            </div>
-                          </a>
-                          <div class="tt-item-close">
-                            <a href="#" class="tt-btn-close"></a>
-                          </div>
                         </div>
                       </div>
                       <div class="tt-cart-total-row">
                         <div class="tt-cart-total-title">SUBTOTAL:</div>
-                        <div class="tt-cart-total-price">324 AED</div>
+                        <div class="tt-cart-total-price">{{headerService.shoppingCart.Total}} AED</div>
                       </div>
                       <div class="tt-cart-btn">
                         <div class="tt-item">
-                          <a (click)="goToCheckOut()" class="btn">PROCEED TO CHECKOUT</a>
+                          <a (click)="goToCheckOut()" class="btn" style="color:white!important">PROCEED TO CHECKOUT</a>
                         </div>
                         <div class="tt-item">
                           <a [routerLink]="['/shoppingcart']" class="btn-link-02 tt-hidden-mobile">View Cart</a>
@@ -261,11 +239,11 @@
                 <div class="tt-dropdown-inner">
                   <ul>
                     <li><a [routerLink]="['/login']"><i class="icon-f-94"></i>Account</a></li>
-                    <li><a [routerLink]="['/order']"><i class="icon-f-94"></i>Your Orders</a></li>
+                    <li *ngIf="headerService.curUser"><a [routerLink]="['/order']"><i class="icon-f-94"></i>Your Orders</a></li>
                     <li><a [routerLink]="['/checkout']"><i class="icon-f-68"></i>Check Out</a></li>
-                    <li><a [routerLink]="['/login']"><i class="icon-f-76"></i>Sign In</a></li>
-                    <li><a (click)="signOut()"><i class="icon-f-77"></i>Sign Out</a></li>
-                    <li><a [routerLink]="['/register']"><i class="icon-f-94"></i>Register</a></li>
+                    <li *ngIf="!headerService.curUser"><a [routerLink]="['/login']"><i class="icon-f-76"></i>Sign In</a></li>
+                    <li *ngIf="headerService.curUser"><a (click)="signOut()" style="cursor: pointer;"><i class="icon-f-77"></i>Sign Out</a></li>
+                    <li *ngIf="!headerService.curUser"><a [routerLink]="['/register']"><i class="icon-f-94"></i>Register</a></li>
                   </ul>
                 </div>
               </div>
@@ -321,7 +299,7 @@
                   <li class="dropdown" style="margin-right:10px;">
                     <a [routerLink]="['/contactus']">CONTACT US</a>
                   </li>
-                  <li class="dropdown" style="margin-right:10px;">
+                  <li *ngIf="!headerService.curUser" class="dropdown" style="margin-right:10px;">
                     <a [routerLink]="['/login']">LOGIN/REGISTER</a>
                   </li>
                 </ul>

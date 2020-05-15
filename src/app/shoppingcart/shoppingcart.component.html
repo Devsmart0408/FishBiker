@@ -80,26 +80,73 @@
         </div>
         <div class="tt-shopcart-col">
           <div class="row">
-            <div class="col-md-6 col-lg-4">
-              <form class="form-default">
-              <div class="tt-shopcart-box">
-                <div class="form-group">
-                  <label for="address_zip">Your Address <sup>*</sup></label>
-                  <input type="text" name="your_address" class="form-control" id="" placeholder="">
+            <div class="col-md-6 col-lg-8">
+              <div class="row">
+                <div class="col-md-12 col-lg-12">
+                  <form class="form-default">
+                  <div class="tt-shopcart-box">
+                    <div class="form-group">
+                      <label for="address_zip">Your Address <sup>*</sup></label>
+                      <input type="text" name="your_address" class="form-control" id="" placeholder="">
+                    </div>
+                    <div class="form-group" style="position: relative;">
+                      <label for="address_zip">New Address <sup>*</sup></label>
+                      <a class="tt-btn-addtocart thumbprod-button-bg add-address">Add Address</a>
+                      <input type="text" name="new_address" class="form-control" id="" placeholder="">
+                    </div>
+                    <h4 class="tt-title">
+                      NOTE
+                    </h4>
+                    <p>Add special instructions for your order...</p>
+                    <textarea class="form-control" rows="3" style="height: 100px!important;"></textarea>
+                  </div>
+                  </form>
                 </div>
-                <div class="form-group">
-                  <label for="address_zip">New Address <sup>*</sup></label>
-                  <input type="text" name="new_address" class="form-control" id="" placeholder="">
+                <div class="col-md-12 col-lg-12">
+                  <form class="form-default">
+                  <h4 class="tt-title" style="margin: 20px 0">
+                    Select your payment method
+                  </h4>
+                  <div class="tt-shopcart-box" style="padding: 20px 39px 20px;position: relative;">
+                    <p>
+                      <input type="radio" id="test2" name="card_type" checked>
+                      <label for="test2">Credit Card</label>
+                    </p>
+                    <img class="credit-option" src="assets/images/credit.png"/>
+                  </div>
+                  <div class="tt-shopcart-box" style="margin-top: 0!important;padding: 20px 39px 20px">
+                    <div class="form-group">
+                      <label for="address_zip">Card Number <sup>*</sup></label>
+                      <input type="text" name="card_num" class="form-control" id="" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="address_zip">Card expiry date <sup>*</sup></label>
+                      <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                          <input type="text" name="start_date" class="form-control" id="" placeholder="">
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                          <input type="text" name="end_date" class="form-control" id="" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="address_zip">Card verification value <sup>*</sup></label>
+                      <input type="text" name="start_date" class="form-control" id="" placeholder="">
+                    </div>
+                  </div>
+                  <div class="tt-shopcart-box" style="padding: 20px 39px 20px;position: relative;">
+                    <p>
+                      <input type="radio" id="test1" name="card_type">
+                      <label for="test1">Cash</label>
+                    </p>
+                    <img class="cash-option" src="assets/images/cash.png"/>
+                  </div>
+                  </form>
                 </div>
-                <h4 class="tt-title">
-                  NOTE
-                </h4>
-                <p>Add special instructions for your order...</p>
-                <textarea class="form-control" rows="3" style="height: 200px!important;"></textarea>
               </div>
-              </form>
             </div>
-            <div class="col-md-12 col-lg-8">
+            <div class="col-md-6 col-lg-4">
               <div class="tt-shopcart-box tt-boredr-large">
                 <table class="tt-shopcart-table01">
                   <tbody>
@@ -107,11 +154,19 @@
                       <th>SUBTOTAL</th>
                       <td>{{cartTotalPrice}} AED</td>
                     </tr>
+                    <tr>
+                      <th>Delivery Fee</th>
+                      <td class="delivery-tax-td"><div><input class="form-control" type="text" [(ngModel)]="deliveryFee" name="deliveryFee"/><span>%</span></div></td>
+                    </tr>
+                    <tr>
+                      <th>TAX</th>
+                      <td class="delivery-tax-td"><div><input class="form-control" type="text" [(ngModel)]="tax" name="tax"/><span>%</span></div></td>
+                    </tr>
                   </tbody>
                   <tfoot>
                     <tr>
                       <th>GRAND TOTAL</th>
-                      <td>{{cartTotalPrice}} AED</td>
+                      <td>{{cartTotalPrice + cartTotalPrice*deliveryFee/100 + cartTotalPrice*tax/100}} AED</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -119,6 +174,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

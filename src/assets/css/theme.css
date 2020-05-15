@@ -40154,3 +40154,91 @@ ngb-modal-backdrop {
 .right-side-cart-quantity .tt-input-counter input{
   height: 40px;
 }
+
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute!important;
+    left: -9999px!important;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative!important;
+    padding-left: 28px!important;
+    cursor: pointer!important;
+    line-height: 20px!important;
+    display: inline-block!important;
+    color: #666!important;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: ''!important;
+    position: absolute!important;
+    left: 0!important;
+    top: 0!important;
+    width: 18px!important;
+    height: 18px!important;
+    border: 1px solid #ddd!important;
+    border-radius: 100%!important;
+    background: #fff!important;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: ''!important;
+    width: 12px!important;
+    height: 12px!important;
+    background: #2879fe!important;
+    position: absolute!important;
+    top: 3px!important;
+    left: 3px!important;
+    border-radius: 100%!important;
+    transition: all 0.2s ease!important;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0!important;
+    -webkit-transform: scale(0)!important;
+    transform: scale(0)!important;
+}
+[type="radio"]:checked + label:after {
+    opacity: 1!important;
+    -webkit-transform: scale(1)!important;
+    transform: scale(1)!important;
+}
+
+
+.credit-option {
+    width: 190px;
+    height: auto;
+    position: absolute;
+    left: 120px;
+    top: 0px;
+}
+.cash-option {
+  width: 50px;
+  height: auto;
+  position: absolute;
+  left: 110px;
+  top: 20px;
+}
+.add-address {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  background: #007bff;
+  color: white!important;
+  padding: 5px 10px;
+  border-radius: 7px;
+}
+.delivery-tax-td input{
+  width: 40px;
+  height: 40px!important;
+}
+.delivery-tax-td div{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.delivery-tax-td span {
+  padding-left: 5px;
+}

@@ -11,6 +11,8 @@ import { ShoppingCart, CartProduct} from '../model/shoppingCart';
 import { ConstValue } from '../helpers/constValue';
 import { Router } from '@angular/router';
 
+import { AuthenticationService } from '../services/authentication.service';
+
 @Component({
   templateUrl: "./successcartmodal.component.html"
 })
@@ -22,7 +24,7 @@ export class SuccessCartModalComponent implements OnInit {
   public cartProduct: CartProduct;
   totalPrice: number;
   totalCounts: number;
-  constructor(private router: Router, public scartmodal: NgbActiveModal, private modalService: NgbModal) { 
+  constructor(private authService: AuthenticationService,private router: Router, public scartmodal: NgbActiveModal, private modalService: NgbModal) { 
     this.shoppingCart = new ShoppingCart();
     this.cartProduct = new CartProduct();
   }
@@ -40,7 +42,12 @@ export class SuccessCartModalComponent implements OnInit {
     this.totalCounts = totalCounts;
   }
   goToCheckOut() {
-    this.router.navigate(["/shoppingcart"]);
+    if(this.authService.currentUserVal) {
+      this.router.navigate(["/shoppingcart"]);
+    } else {
+      this.router.navigate(["/login"]);
+    }
+    
     this.scartmodal.close();
   }
   goToProduct(productId: number) {

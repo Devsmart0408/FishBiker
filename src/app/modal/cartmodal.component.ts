@@ -11,6 +11,7 @@ import { ShoppingCart, CartProduct} from '../model/shoppingCart';
 import { ConstValue } from '../helpers/constValue';
 import { SuccessCartModalComponent } from '../modal/successcartmodal.component';
 
+import { HeaderService } from '../services/header.service';
 @Component({
   templateUrl: "./cartmodal.component.html"
 })
@@ -23,7 +24,7 @@ export class CartModalComponent implements OnInit {
   public selectedAttr: any;
   count: number;
 
-  constructor(public cartmodal: NgbActiveModal, private modalService: NgbModal) { 
+  constructor(public headerService: HeaderService, public cartmodal: NgbActiveModal, private modalService: NgbModal) { 
     this.shoppingCart = new ShoppingCart();
     this.cartProduct = new CartProduct();
   }
@@ -49,7 +50,7 @@ export class CartModalComponent implements OnInit {
       this.shoppingCart.Total = 0;
       this.shoppingCart.Note = '';
       this.shoppingCart.GrandTotal = 0;
-      this.shoppingCart.Count = '';
+      this.shoppingCart.Count = 0;
     }else {
       this.shoppingCart = get_shoppingCart;
     }
@@ -82,6 +83,7 @@ export class CartModalComponent implements OnInit {
       this.shoppingCart.Products.push(this.cartProduct);
     }
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
+    this.headerService.setHeaderShoppingCart();
     this.cartmodal.close();
     const scartmodalCharge = this.modalService.open(SuccessCartModalComponent);
     scartmodalCharge.componentInstance.product = product;
