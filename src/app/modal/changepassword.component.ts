@@ -49,6 +49,7 @@ export class ChangePasswordComponent implements OnInit {
         return;
       } else {
         this.accountService.update_password(formdata.CurrentPassword, formdata.NewPassword, this.headerService.curUser.Token);
+        this.changepasswordModal.close();
       }
   }
 }
