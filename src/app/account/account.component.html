@@ -24,6 +24,12 @@
               </div>
               <div class="col-md-6 col-lg-9">
                 <div *ngIf="tab_name=='info'">
+                  <div class="alert alert-success alert-dismissible fade hidden" role="alert">
+                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                   <form  [formGroup]="infoForm" class="form-default">
                     <div class="tt-shopcart-box tt-credit-box">
                       <div class="form-group">

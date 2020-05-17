@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConstValue } from '../helpers/constValue';
 import { User } from '../model/user';
 import { environment } from '../../environments/environment';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 @Injectable()
 export class AccountService {
 
@@ -29,14 +29,26 @@ export class AccountService {
         user_data.LastName = res.Data.User.LastName;
         localStorage.setItem(ConstValue.User, JSON.stringify(user_data));
         if(res.Success) {
-          alert('Your info were updated Successfully');
+          Swal.fire(
+            'Success!',
+            'Your info were updated Successfully.',
+            'success'
+          )
         }else {
-          alert('Failed');
+          Swal.fire(
+            'Failed!',
+            '',
+            'error'
+          )
         }
         
       },
         msg => { 
-          alert('Failed');
+          Swal.fire(
+            'Failed!',
+            '',
+            'error'
+          )
           //reject(msg);
          });
     });
@@ -57,14 +69,25 @@ export class AccountService {
       ).toPromise().then((res: any) => {
         resolve(res);
         if(res.Success) {
-          alert('Your password were updated Successfully');
+          Swal.fire(
+            'Success!',
+            'Your password were updated Successfully.',
+            'success'
+          )
         }else {
-          alert('Failed');
+          Swal.fire(
+            'Failed!',
+            '',
+            'error'
+          )
         }
-        //localStorage.setItem(ConstValue.User, JSON.stringify(res.Data.User));
       },
         msg => { 
-          alert('Failed');
+          Swal.fire(
+            'Failed!',
+            '',
+            'error'
+          )
           //reject(msg); 
         });
     });
