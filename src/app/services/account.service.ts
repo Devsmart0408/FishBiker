@@ -35,7 +35,10 @@ export class AccountService {
         }
         
       },
-        msg => { reject(msg); });
+        msg => { 
+          alert('Failed');
+          //reject(msg);
+         });
     });
     return promise;
   }
@@ -60,7 +63,10 @@ export class AccountService {
         }
         //localStorage.setItem(ConstValue.User, JSON.stringify(res.Data.User));
       },
-        msg => { reject(msg); });
+        msg => { 
+          alert('Failed');
+          //reject(msg); 
+        });
     });
     return promise;
   }
