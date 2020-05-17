@@ -66,8 +66,9 @@
       <div class="row">
         <div class="col-8 col-md-6 col-lg-8">
           <ul class="nav nav-tabs tt-tabs-default" role="tablist" >
-            <li class="nav-item" *ngFor="let category of productCategories[0].SubCategories">
-              <a class="nav-link active" data-toggle="tab" href="#tt-tab01-01" (click)="setCategory(category.CategoryId)">{{category.CategoryName}}</a>
+            <li class="nav-item" *ngFor="let category of productCategories[0].SubCategories;let index=index;">
+              <a *ngIf="index == 0" class="nav-link active" data-toggle="tab" href="#tt-tab01-01" (click)="setCategory(1)">All</a>
+              <a class="nav-link" data-toggle="tab" href="#tt-tab01-01" (click)="setCategory(category.CategoryId)">{{category.CategoryName}}</a>
             </li>
           </ul>
           <div class="tab-content">
@@ -138,11 +139,11 @@
                   <tbody *ngIf="shoppingCart != null">
                     <tr *ngFor="let item of shoppingCart.Products; let index = index">
                       <td>
-                        <h2 class="tt-title">
-                          <a>{{item.Product.ProductName}}</a>
+                        <h2 class="tt-title" >
+                          <a style="font-size: 14px;">{{item.Product.ProductName}}</a>
                         </h2>
                         <ul class="tt-list-description">
-                          <li>{{item.Attribute}}</li>
+                          <li style="font-size: 12px;">{{item.Attribute}}</li>
                         </ul>
                       </td>
                       <td>
@@ -173,7 +174,10 @@
               </div>
               <div class="tt-shopcart-box tt-boredr-large">
                 <table class="tt-shopcart-table01">
-                  <tbody><tr><th>SUBTOTAL</th><td>{{cartTotalPrice}} AED</td></tr></tbody><tfoot><tr><th>GRAND TOTAL</th><td>{{cartTotalPrice}} AED</td></tr></tfoot>
+                  <tbody>
+                    <tr><th>SUBTOTAL</th><td>{{cartTotalPrice}} AED</td></tr>
+                  </tbody>
+                  <!-- <tfoot><tr><th>GRAND TOTAL</th><td>{{cartTotalPrice}} AED</td></tr></tfoot> -->
                 </table><a (click)="viewCart()" class="btn btn-lg" style="color:white!important">
                   <span class="icon icon-check_circle"></span>PROCEED TO CHECKOUT</a>
               </div>
@@ -184,8 +188,20 @@
     </div>
   </div>
   <div class="container-indent">
-    <div class="container">
-      <img src="assets/images/lovely_fresh.png" >
+    <div class="container" style="padding-top: 50px;">
+      <div class="row">
+        <div class="col-lg-8 col-md-6">
+          <div class="tt-discover-app">
+            <h2>Discover the new talabat app</h2>
+            <p>Get what you need, when you need it</p>
+            <button><img src="assets/images/icon_App.png"></button>
+            <button><img src="assets/images/icon_Google.png"></button>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <img class="app-image" src="assets/images/mobile.png" >
+        </div>
+      </div>
     </div>
   </div>
   <div class="container-indent">

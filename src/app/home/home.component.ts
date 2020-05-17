@@ -64,10 +64,11 @@ export class HomeComponent implements OnInit
     this.selectCategoryId = id;
   }
   filterProducts(your_collection): any[] {  
-    if(your_collection){
+    if(this.selectCategoryId == 1){
+      return your_collection;
+    }else if(your_collection){
       return your_collection.filter(i => i.CategoryId === this.selectCategoryId);
     }
-    
   }
   getAllProducts() {
     this.products = JSON.parse(localStorage.getItem(ConstValue.Product));

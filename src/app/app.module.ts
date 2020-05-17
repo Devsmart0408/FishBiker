@@ -14,7 +14,7 @@ import { ContactUsComponent } from './contactus/contactus.component';
 import { RouterModule } from '@angular/router';
 import { HeaderService } from './services/header.service';
 import { AuthenticationService } from './services/authentication.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorInterceptorProvider } from './helpers/error.interceptor';
 import { OrderComponent } from './order/order.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
@@ -50,6 +50,7 @@ import { QuickModalComponent } from './modal/quickmodal.component';
     HttpClientModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     LeafletModule.forRoot(),
     NgbModule
   ],

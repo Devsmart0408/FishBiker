@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Product } from '../model/product';
@@ -6,6 +6,9 @@ import { ShoppingCart, CartProduct} from '../model/shoppingCart';
 import { ConstValue } from '../helpers/constValue';
 
 import { HeaderService } from '../services/header.service';
+
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './shoppingcart.component.html',
@@ -17,14 +20,36 @@ export class ShoppingCartComponent implements OnInit {
   cartTotalCount: number;
   deliveryFee: number;
   tax: number;
-  constructor(public headerService: HeaderService, private route: ActivatedRoute) {
+  card_type: any;
+  card_num:any;
+  start_date:any;
+  end_date: any;
+  cvv: any;
+  submitted = false;
+  creditForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, public headerService: HeaderService, private route: ActivatedRoute) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getAllShoppingcarts();
     this.deliveryFee = 0;
     this.tax = 5;
+    this.card_type = 'credit';
+    this.card_num = '';
+    this.start_date = '';
+    this.end_date = '';
+    this.cvv = '';
+
+    this.creditForm = this.formBuilder.group({
+      card_num: ['', Validators.required],
+      start_date: ['', Validators.required],
+      end_date: ['', Validators.required],
+      cvv: ['', Validators.required],
+    });
+    
   }
+  get f() { return this.creditForm.controls; }
 
   getAllShoppingcarts() {
     let carttotalPrice = 0;
@@ -77,6 +102,14 @@ export class ShoppingCartComponent implements OnInit {
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
     this.headerService.setHeaderShoppingCart();
     this.getAllShoppingcarts();
+  }
+  gotoCheckOut() {
+    if(this.card_type == 'credit') {
+      this.submitted  = true;
+      if(this.creditForm.invalid) {
+        return;
+      }
+    } 
   }
 
 }

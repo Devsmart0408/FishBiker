@@ -40242,3 +40242,47 @@ ngb-modal-backdrop {
 .delivery-tax-td span {
   padding-left: 5px;
 }
+
+.tt-discover-app button{
+  width: 230px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-right: 15px;
+}
+.tt-discover-app {
+  position: relative;
+  padding: 50px 0 30px 100px;
+}
+.tt-discover-app button img {
+  width: 100%;
+}
+.tt-discover-app p {
+  font-size: 20px;
+  font-weight: 400;
+}
+.tt-discover-app h2 {
+  font-size: 40px;
+  font-weight: 700;  
+  padding-bottom: 5px!important;
+}
+.tt-discover-app p {
+  margin-bottom: 50px;
+}
+.tt-discover-app .app-image {
+  width: 100%;
+}
+.tt-credit-box {
+  transition: 0.4s;
+  margin-top: 0!important;
+  padding: 20px 39px 20px
+}
+.is-disabled {
+  cursor: not-allowed!important;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  border-color: #dc3545;
+}

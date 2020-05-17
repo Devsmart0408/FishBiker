@@ -8,6 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ShoppingCart, CartProduct} from '../model/shoppingCart';
 import { ConstValue } from '../helpers/constValue';
 import { HeaderService } from '../services/header.service';
+import * as $ from 'jquery';
 @Component({
   templateUrl: './product.component.html',
 })

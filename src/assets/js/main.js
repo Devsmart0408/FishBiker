@@ -62,7 +62,6 @@
         ttCollapseBlock: $('.tt-collapse-block'),
         modalVideoProduct: $('#modalVideoProduct'),
         modalAddToCart: $('#modalAddToCartProduct'),
-        ttMobileProductSlider: $('.tt-mobile-product-slider'),
         ttCollapse: $ttPageContent.find('.tt-collapse'),
         ttProductListing: $ttPageContent.find('.tt-product-listing'),
         ttCountdown: $ttPageContent.find('.tt-countdown'),
@@ -815,22 +814,7 @@
         });
     };
     //blog listing slider
-    if (blocks.ttMobileProductSlider.length) {
-        blocks.ttMobileProductSlider.slick({
-          dots: false,
-          arrows: true,
-          infinite: true,
-          speed: 300,
-          slidesToShow: 1,
-          adaptiveHeight: true,
-           lazyLoad: 'progressive',
-        });
-        if($html.hasClass('ie')){
-          blocks.ttModalQuickView.each(function() {
-              blocks.ttMobileProductSlider.slick("slickSetOption", "infinite", false);
-          });
-        };
-    };
+
     //blog listing slider
     if (blocks.ttSliderBlog.length) {
         blocks.ttSliderBlog.slick({

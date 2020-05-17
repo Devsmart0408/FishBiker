@@ -1,5 +1,5 @@
-import { Component, OnInit, Injector } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Injector, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { HeaderService } from './services/header.service';
 import { Currency } from './model/currency';
 import { Language } from './model/language';
@@ -14,13 +14,14 @@ import { AuthenticationService } from './services/authentication.service';
 import { ProductService } from './services/product.service';
 
 import { ShoppingCart, CartProduct} from './model/shoppingCart';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy  {
   
   shoppingCart: ShoppingCart;
   cartTotalPrice: number;
@@ -34,6 +35,7 @@ export class AppComponent implements OnInit {
   tenantDetails: TenantDetails;
   tenant: Tenant;
   curUser: User;
+  routerSubscription: any;
 
   constructor(
     private router: Router,
@@ -41,7 +43,7 @@ export class AppComponent implements OnInit {
     public headerService: HeaderService,
     private productService: ProductService)
   {
-
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
     if (!this.headerService.getLocalStorageItemBykey(ConstValue.Product)) {
 
@@ -62,13 +64,26 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() : void {
-    import('../assets/js/main.js');
+    // import('../assets/js/main.js');
+    // $.getScript('../assets/js/main.js');
+    this.recallJsFuntions();
+    
     this.getAllShoppingcarts();
     if(this.headerService.getLocalStorageItemBykey(ConstValue.User)) {
       this.curUser = JSON.parse(localStorage.getItem(ConstValue.User));
     }
   }
+  recallJsFuntions() {
+    this.routerSubscription = this.router.events.subscribe(e => {
+      if(e instanceof NavigationEnd){
+        $.getScript('../assets/js/main.js');
+      }
+    });
+  }
 
+  ngOnDestroy() {
+    this.routerSubscription.unsubscribe();
+  }
   getAllShoppingcarts() {
     let carttotalPrice = 0;
     let totalCounts = 0;
