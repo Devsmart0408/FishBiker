@@ -1,0 +1,73 @@
+
+  <div class="tt-breadcrumb">
+    <div class="container">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li>My Account</li>
+      </ul>
+    </div>
+  </div>
+  <div id="tt-pageContent">
+    <div class="container-indent">
+      <div class="container">
+        <h1 class="tt-title-subpages noborder">My Account</h1>
+        <div class="tt-shopcart-col">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-lg-3">
+                <ul class="account_tab_menu">
+                  <li [ngClass]="{ 'active': tab_name=='info' }"><a (click)="setTab('info')">Account Info</a></li>
+                  <li [ngClass]="{ 'active': tab_name=='saved_address' }"><a (click)="setTab('saved_address')">Saved Address</a></li>
+                  <li [ngClass]="{ 'active': tab_name=='my_orders' }"><a (click)="setTab('my_orders')">My orders</a></li>
+                  <li [ngClass]="{ 'active': tab_name=='saved_cards' }"><a (click)="setTab('saved_cards')">Saved Cards</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6 col-lg-9">
+                <div *ngIf="tab_name=='info'">
+                  <form  [formGroup]="infoForm" class="form-default">
+                    <div class="tt-shopcart-box tt-credit-box">
+                      <div class="form-group">
+                        <label for="address_zip">Email   <sup>*</sup></label>
+                        <input type="text" style="background:#eee" [value]="EmailAddress" disabled class="form-control" class="form-control" id="" placeholder="">
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-6 col-lg-6">
+                            <label for="FirstName">First Name <sup>*</sup></label>
+                            <input type="text" formControlName="FirstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }" class="form-control" id="" placeholder="">
+                            <div *ngIf="f.FirstName.errors" class="invalid-feedback">
+                              <div *ngIf="f.FirstName.errors.required">First name is required</div>
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-6">
+                            <label for="LastName">Last Name <sup>*</sup></label>
+                            <input type="text" formControlName="LastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }" class="form-control" id="" placeholder="">
+                            <div *ngIf="f.LastName.errors" class="invalid-feedback">
+                              <div *ngIf="f.LastName.errors.required">Last name is required</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <a (click)="updateInfo()" class="account-info-btn btn btn-md " [ngClass]="{ 'is-disabled': infoForm.invalid }">
+                        <span  class="icon icon-check_circle"></span>UPDATE</a>
+                      <a (click)="showPasswordModal()" class=" account-info-btn account-info-btn-password btn btn-md ">
+                          <span  class="icon icon-check_circle"></span>CHANGE PASSWORD</a>
+                    </div>
+                  </form>
+                </div>
+                <div *ngIf="tab_name == 'saved_address' " class="account_container">
+                  <p>There are no saved address</p>
+                </div>
+                <div *ngIf="tab_name == 'my_orders' " class="account_container">
+                  <p>There are no orders</p>
+                </div>
+                <div *ngIf="tab_name == 'saved_cards' " class="account_container">
+                  <p>There are no saved credit card to display</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

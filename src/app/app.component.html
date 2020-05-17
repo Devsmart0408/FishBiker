@@ -238,7 +238,7 @@
                 </div>
                 <div class="tt-dropdown-inner">
                   <ul>
-                    <li><a [routerLink]="['/login']"><i class="icon-f-94"></i>Account</a></li>
+                    <li *ngIf="headerService.curUser"><a [routerLink]="['/account']"><i class="icon-f-94"></i>Account</a></li>
                     <li *ngIf="headerService.curUser"><a [routerLink]="['/order']"><i class="icon-f-94"></i>Your Orders</a></li>
                     <li><a [routerLink]="['/checkout']"><i class="icon-f-68"></i>Check Out</a></li>
                     <li *ngIf="!headerService.curUser"><a [routerLink]="['/login']"><i class="icon-f-76"></i>Sign In</a></li>

@@ -10,6 +10,7 @@ import { ContactUsComponent } from './contactus/contactus.component';
 import { ApiComponent } from './_apis/api.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { OrderComponent } from './order/order.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, pathMatch: 'full'},
   { path: 'contactus', component: ContactUsComponent, pathMatch: 'full'},
   { path: 'order', component: OrderComponent, pathMatch: 'full' },
+  { path: 'account', component: AccountComponent, pathMatch: 'full' },
   { path: 'api', component: ApiComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];

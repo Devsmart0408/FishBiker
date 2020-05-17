@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './notfound/notfound.component';
 import { ContactUsComponent } from './contactus/contactus.component';
+import { AccountComponent } from './account/account.component';
 import { RouterModule } from '@angular/router';
 import { HeaderService } from './services/header.service';
 import { AuthenticationService } from './services/authentication.service';
@@ -19,12 +20,14 @@ import { OrderComponent } from './order/order.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { ShoppingCartService } from './services/shoppingcart.service';
 import { ProductService } from './services/product.service';
+import { AccountService } from './services/account.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ApiComponent } from './_apis/api.component';
 import { ChildComponent } from './modal/child.component';
 import { CartModalComponent } from './modal/cartmodal.component';
 import { SuccessCartModalComponent } from './modal/successcartmodal.component';
 import { QuickModalComponent } from './modal/quickmodal.component';
+import { ChangePasswordComponent } from './modal/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { QuickModalComponent } from './modal/quickmodal.component';
     ChildComponent,
     CartModalComponent,
     SuccessCartModalComponent,
-    QuickModalComponent
+    QuickModalComponent,
+    AccountComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -53,8 +58,8 @@ import { QuickModalComponent } from './modal/quickmodal.component';
     LeafletModule.forRoot(),
     NgbModule
   ],
-  providers: [HeaderService, AuthenticationService, ShoppingCartService, ProductService, ErrorInterceptorProvider],
-  entryComponents: [CartModalComponent, SuccessCartModalComponent,QuickModalComponent],
+  providers: [HeaderService, AuthenticationService, ShoppingCartService, ProductService,AccountService, ErrorInterceptorProvider],
+  entryComponents: [CartModalComponent, SuccessCartModalComponent,QuickModalComponent, ChangePasswordComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
