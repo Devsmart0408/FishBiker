@@ -1117,7 +1117,7 @@
                 objSearchInput = objSearch.find('.tt-search-input');
 
             // search
-            if ($this.hasClass('tt-search')){
+            if ($this.hasClass('tt-search') && $('.tt-dropdown-toggle').is(target)){
                 searchPopup();
             };
             function searchPopup(){
@@ -1136,9 +1136,9 @@
             };
 
             // cart, account, multi-ob
-            // if (!$(this).hasClass('tt-search') && $('.tt-dropdown-toggle').is(target)){
-            //     ttwindowWidth <= 1024 ?  popupObjMobile($this) : popupObjDesctop($this);
-            // };
+            if (!$(this).hasClass('tt-search') && $('.tt-dropdown-toggle').is(target)){
+                ttwindowWidth <= 1024 ?  popupObjMobile($this) : popupObjDesctop($this);
+            };
             function popupObjMobile(obj){
                 $('header').find('.tt-dropdown-obj.active').removeClass('active');
                 obj.toggleClass('active').find('.tt-dropdown-menu').removeAttr("style");
@@ -1158,7 +1158,13 @@
                         $this.removeClass('active').find('.tt-dropdown-menu').css("display", "none");
                     }
                 });
-
+                if ($('.tt-dropdown-toggle').is(target)){
+                    toggleDropdown($this);
+                };
+            };
+            function toggleDropdown(obj){
+                obj.toggleClass('active').find('.tt-dropdown-menu').slideToggle(200);
+                return;
             };
 
             $(document).mouseup(function(e){

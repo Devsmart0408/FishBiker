@@ -80,114 +80,112 @@
         </div>
         <div class="tt-shopcart-col">
           <div class="row">
-            <div class="col-md-6 col-lg-8">
-              <div class="row">
-                <div class="col-md-12 col-lg-12">
-                  <form class="form-default">
-                  <div class="tt-shopcart-box">
-                    <div class="form-group">
-                      <label for="address_zip">Your Address <sup>*</sup></label>
-                      <input type="text" name="your_address" class="form-control" id="" placeholder="">
-                    </div>
-                    <div class="form-group" style="position: relative;">
-                      <label for="address_zip">New Address <sup>*</sup></label>
-                      <a class="tt-btn-addtocart thumbprod-button-bg add-address">Add Address</a>
-                      <input type="text" name="new_address" class="form-control" id="" placeholder="">
-                    </div>
-                    <h4 class="tt-title">
-                      NOTE
-                    </h4>
-                    <p>Add special instructions for your order...</p>
-                    <textarea class="form-control" rows="3" style="height: 100px!important;"></textarea>
-                  </div>
-                  </form>
+            <div class="col-md-12 col-lg-12">
+              <form class="form-default">
+              <div class="tt-shopcart-box">
+                <div class="form-group">
+                  <label for="address_zip">Your Address <sup>*</sup></label>
+                  <input type="text" name="your_address" class="form-control" id="" placeholder="">
                 </div>
-                <div class="col-md-12 col-lg-12">
-                  
-                  <h4 class="tt-title" style="margin: 20px 0">
-                    Select your payment method
-                  </h4>
-                  <div class="tt-shopcart-box" style="padding: 20px 39px 20px;position: relative;">
-                    <p>
-                      <input type="radio" value="credit" [(ngModel)]="card_type" id="test2" name="card_type" checked>
-                      <label for="test2">Credit Card</label>
-                    </p>
-                    <img class="credit-option" src="assets/images/credit.png"/>
+                <div class="form-group" style="position: relative;">
+                  <label for="address_zip">New Address <sup>*</sup></label>
+                  <a class="tt-btn-addtocart thumbprod-button-bg add-address">Add Address</a>
+                  <input type="text" name="new_address" class="form-control" id="" placeholder="">
+                </div>
+                <h4 class="tt-title">
+                  NOTE
+                </h4>
+                <p>Add special instructions for your order...</p>
+                <textarea class="form-control" rows="3" style="height: 100px!important;"></textarea>
+              </div>
+              </form>
+            </div>
+          </div>
+          <div class="container">
+            <h4 class="tt-title" style="margin: 40px 0 0 0;">
+              Select your payment method
+            </h4>
+            <div class="row">
+              <div class="col-md-6 col-lg-8">
+                <div class="tt-shopcart-box" style="padding: 20px 39px 20px;position: relative;">
+                  <p>
+                    <input type="radio" value="credit" [(ngModel)]="card_type" id="test2" name="card_type" checked>
+                    <label for="test2">Credit Card</label>
+                  </p>
+                  <img class="credit-option" src="assets/images/credit.png"/>
+                </div>
+                <form  [formGroup]="creditForm" class="form-default">
+                <div class="tt-shopcart-box tt-credit-box" *ngIf="card_type=='credit'">
+                  <div class="form-group">
+                    <label for="address_zip">Card Number <sup>*</sup></label>
+                    <input type="text" formControlName="card_num" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.card_num.errors }" class="form-control" id="" placeholder="">
+                    <div *ngIf="f.card_num.errors" class="invalid-feedback">
+                      <div *ngIf="f.card_num.errors.required">Card Number is required</div>
                   </div>
-                  <form  [formGroup]="creditForm" class="form-default">
-                  <div class="tt-shopcart-box tt-credit-box" *ngIf="card_type=='credit'">
-                    <div class="form-group">
-                      <label for="address_zip">Card Number <sup>*</sup></label>
-                      <input type="text" formControlName="card_num" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.card_num.errors }" class="form-control" id="" placeholder="">
-                      <div *ngIf="f.card_num.errors" class="invalid-feedback">
-                        <div *ngIf="f.card_num.errors.required">Card Number is required</div>
-                    </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="address_zip">Card expiry date <sup>*</sup></label>
-                      <div class="row">
-                        <div class="col-md-6 col-lg-6">
-                          <input type="text" formControlName="start_date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }" class="form-control" id="" placeholder="">
-                          <div *ngIf="f.start_date.errors" class="invalid-feedback">
-                            <div *ngIf="f.start_date.errors.required">Start date is required</div>
-                          </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="address_zip">Card expiry date <sup>*</sup></label>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-6">
+                        <input type="text" formControlName="start_date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.start_date.errors }" class="form-control" id="" placeholder="">
+                        <div *ngIf="f.start_date.errors" class="invalid-feedback">
+                          <div *ngIf="f.start_date.errors.required">Start date is required</div>
                         </div>
-                        <div class="col-md-6 col-lg-6">
-                          <input type="text" formControlName="end_date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.end_date.errors }" class="form-control" id="" placeholder="">
-                          <div *ngIf="f.end_date.errors" class="invalid-feedback">
-                            <div *ngIf="f.end_date.errors.required">Start date is required</div>
-                          </div>
+                      </div>
+                      <div class="col-md-6 col-lg-6">
+                        <input type="text" formControlName="end_date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.end_date.errors }" class="form-control" id="" placeholder="">
+                        <div *ngIf="f.end_date.errors" class="invalid-feedback">
+                          <div *ngIf="f.end_date.errors.required">Start date is required</div>
                         </div>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label for="address_zip">Card verification value <sup>*</sup></label>
-                      <input type="text" formControlName="cvv" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cvv.errors }" class="form-control" id="" placeholder="">
-                      <div *ngIf="f.cvv.errors" class="invalid-feedback">
-                        <div *ngIf="f.cvv.errors.required">Start date is required</div>
-                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="address_zip">Card verification value <sup>*</sup></label>
+                    <input type="text" formControlName="cvv" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cvv.errors }" class="form-control" id="" placeholder="">
+                    <div *ngIf="f.cvv.errors" class="invalid-feedback">
+                      <div *ngIf="f.cvv.errors.required">Start date is required</div>
                     </div>
                   </div>
-                  </form>
-                  <div class="tt-shopcart-box" style="padding: 20px 39px 20px;position: relative;">
-                    <p>
-                      <input type="radio"value="cash" [(ngModel)]="card_type" id="test1" name="card_type">
-                      <label for="test1">Cash</label>
-                    </p>
-                    <img class="cash-option" src="assets/images/cash.png"/>
-                  </div>
+                </div>
+                </form>
+                <div class="tt-shopcart-box" style="padding: 20px 39px 20px;position: relative;">
+                  <p>
+                    <input type="radio"value="cash" [(ngModel)]="card_type" id="test1" name="card_type">
+                    <label for="test1">Cash</label>
+                  </p>
+                  <img class="cash-option" src="assets/images/cash.png"/>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="tt-shopcart-box tt-boredr-large">
-                <table class="tt-shopcart-table01">
-                  <tbody>
-                    <tr>
-                      <th>SUBTOTAL</th>
-                      <td>{{cartTotalPrice}} AED</td>
-                    </tr>
-                    <tr>
-                      <th>Delivery Fee</th>
-                      <td class="delivery-tax-td"><div><input disabled style="background: none;border:none;padding: 0!important;text-align: right;" class="form-control" type="text" [(ngModel)]="deliveryFee" name="deliveryFee"/><span>AED</span></div></td>
-                    </tr>
-                    <tr>
-                      <th>TAX</th>
-                      <td class="delivery-tax-td"><div><input class="form-control" type="text" [(ngModel)]="tax" name="tax"/><span>%</span></div></td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <th>GRAND TOTAL</th>
-                      <td>{{cartTotalPrice + deliveryFee + cartTotalPrice*tax/100}} AED</td>
-                    </tr>
-                  </tfoot>
-                </table>
-                <a (click)="gotoCheckOut()" class="btn btn-lg" [ngClass]="{ 'is-disabled': creditForm.invalid && card_type == 'credit' }" style="color:white!important"><span  class="icon icon-check_circle"></span>PROCEED TO CHECKOUT</a>
+              <div class="col-md-6 col-lg-4">
+                <div class="tt-shopcart-box tt-boredr-large">
+                  <table class="tt-shopcart-table01">
+                    <tbody>
+                      <tr>
+                        <th>SUBTOTAL</th>
+                        <td>{{cartTotalPrice}} AED</td>
+                      </tr>
+                      <tr>
+                        <th>Delivery Fee</th>
+                        <td class="delivery-tax-td"><div><input disabled style="background: none;border:none;padding: 0!important;text-align: right;" class="form-control" type="text" [(ngModel)]="deliveryFee" name="deliveryFee"/><span>AED</span></div></td>
+                      </tr>
+                      <tr>
+                        <th>TAX</th>
+                        <td class="delivery-tax-td"><div><input class="form-control" type="text" [(ngModel)]="tax" name="tax"/><span>%</span></div></td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>GRAND TOTAL</th>
+                        <td>{{cartTotalPrice + deliveryFee + cartTotalPrice*tax/100}} AED</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <a (click)="gotoCheckOut()" class="btn btn-lg" [ngClass]="{ 'is-disabled': creditForm.invalid && card_type == 'credit' }" style="color:white!important"><span  class="icon icon-check_circle"></span>PROCEED TO CHECKOUT</a>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>

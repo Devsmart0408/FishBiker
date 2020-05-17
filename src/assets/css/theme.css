@@ -40142,17 +40142,21 @@ ngb-modal-backdrop {
   top: 120px;
 }
 .right-side-cart-quantity .tt-input-counter{
-  max-width: 100px!important;
-  min-width: 100px!important;
+  max-width: 80px!important;
+  min-width: 80px!important;
 }
 .right-side-cart-quantity .tt-input-counter span{
-  width: 35px;
+  width: 20px;
 }
 .right-side-cart-quantity .tt-input-counter span::before{
-  line-height: 40px!important;
+  line-height: 30px!important;
 }
 .right-side-cart-quantity .tt-input-counter input{
-  height: 40px;
+  height: 30px;
+  width: 80px;
+}
+.right-side-cart-quantity .tt-input-counter.style-01 span.plus-btn{
+
 }
 
 

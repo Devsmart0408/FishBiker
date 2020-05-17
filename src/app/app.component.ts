@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd,NavigationStart } from '@angular/router';
 import { HeaderService } from './services/header.service';
 import { Currency } from './model/currency';
 import { Language } from './model/language';
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy  {
     public headerService: HeaderService,
     private productService: ProductService)
   {
-    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 
     if (!this.headerService.getLocalStorageItemBykey(ConstValue.Product)) {
 
@@ -64,8 +64,8 @@ export class AppComponent implements OnInit, OnDestroy  {
   }
 
   ngOnInit() : void {
-    // import('../assets/js/main.js');
-    // $.getScript('../assets/js/main.js');
+    //import('../assets/js/popup-main.js');
+    $.getScript('../assets/js/popup-main.js');
     this.recallJsFuntions();
     
     this.getAllShoppingcarts();
@@ -74,8 +74,12 @@ export class AppComponent implements OnInit, OnDestroy  {
     }
   }
   recallJsFuntions() {
-    this.routerSubscription = this.router.events.subscribe(e => {
+
+     this.routerSubscription = this.router.events.subscribe(e => {
       if(e instanceof NavigationEnd){
+        if($('.zoomContainer')) {
+          $('.zoomContainer').remove();
+        }
         $.getScript('../assets/js/main.js');
       }
     });

@@ -75,44 +75,42 @@
             <div class="tab-pane active" id="tt-tab01-01">
               <div class="row tt-layout-product-item" >
                 <div class="col-6 col-md-6 col-lg-4" *ngFor="let product of filterProducts(products)" >
-                  <div class="tt-product thumbprod-center" >
+                  <div class="tt-product thumbprod-center" style="cursor: pointer!important;">
                     <div class="tt-image-box">
                       <a (click)="viewQuick(product)" class="tt-btn-quickview" data-tooltip="Quick View"
                         data-tposition="left">
                       </a>
                       <a href="#" class="tt-btn-wishlist" data-tooltip="Add to Wishlist" data-tposition="left"></a>
                       <a (click)="viewProduct(product.ProductId)">
-                        <span class="tt-img"><img [src]="product.ProductImage" alt=""></span>
+                        <span class="tt-img"><img [src]="product.ProductImage" alt="" style="cursor: pointer!important;"></span>
                         <span class="tt-img-roll-over"><img [src]="product.ProductImage" alt=""></span>
                       </a>
                     </div>
-                    <div class="tt-description">
-                      <div class="tt-row">
-                        <ul class="tt-add-info">
+                    <div class="tt-description" style="cursor: pointer!important;">
+                      <div class="tt-row" style="cursor: pointer!important;">
+                        <ul class="tt-add-info" style="cursor: pointer!important;">
                           <li><h5><a (click)="viewProduct(product.ProductId)">{{product.ProductName}}</a></h5></li>
                         </ul>
-                        <ul class="tt-add-info" *ngIf="product.Attributes.Type">
+                        <ul class="tt-add-info" *ngIf="product.Attributes.Type" style="cursor: pointer!important;" >
                           <li><a>{{product.Attributes.Type[0].Attribute}}</a></li>
                           <li><a>{{product.Attributes.Type[0].PricePerUnit}}</a></li>
                           <li><a>{{product.Attributes.Type[0].CountryOfOriginId}}</a></li>
                           <li><a>{{product.Attributes.Type[0].DeliveryType}}</a></li>
                         </ul>
-                        <ul class="tt-add-info" *ngIf="product.Attributes.Size">
+                        <ul class="tt-add-info" *ngIf="product.Attributes.Size" style="cursor: pointer!important;">
                           <li><a>{{product.Attributes.Size[0].Attribute}}</a></li>
                           <li><a>{{product.Attributes.Size[0].PricePerUnit}}</a></li>
                           <li><a>{{product.Attributes.Size[0].CountryOfOriginId}}</a></li>
                           <li><a>{{product.Attributes.Size[0].DeliveryType}}</a></li>
                         </ul>
                       </div>
-                      <h2 class="tt-title"><a (click)="viewProduct(1)">{{product.ProductId}}</a></h2>
-                      <div class="tt-price">
+                      <h2 class="tt-title" style="cursor: pointer!important;"><a (click)="viewProduct(1)">{{product.ProductId}}</a></h2>
+                      <div class="tt-price" style="cursor: pointer!important;">
                         <!--{{product.Attributes.Type[0].PricePerUnit}}-->
                       </div>
-                      <div class="tt-product-inside-hover">
+                      <div class="tt-product-inside-hover" style="cursor: pointer!important;">
                         <div class="tt-row-btn">
-                          <!-- <a (click)="AddToCart(product)" data-backdrop="false" class="tt-btn-addtocart thumbprod-button-bg"
-                            data-toggle="modal" data-target="#modalAddToCartProduct">ADD TO CART</a> -->
-                            <a class="tt-btn-addtocart thumbprod-button-bg" (click)="showCartModal(product)">ADD TO CART</a>
+                            <a class="tt-btn-addtocart thumbprod-button-bg" (click)="showCartModal(product)" style="cursor: pointer!important;">ADD TO CART</a>
                         </div>
                         <div class="tt-row-btn">
                           <a href="#" class="tt-btn-quickview" data-toggle="modal" data-target="#ModalquickView"></a>
@@ -140,14 +138,14 @@
                     <tr *ngFor="let item of shoppingCart.Products; let index = index">
                       <td>
                         <h2 class="tt-title" >
-                          <a style="font-size: 14px;">{{item.Product.ProductName}}</a>
+                          <a style="font-size: 13px;">{{item.Product.ProductName}}</a>
                         </h2>
                         <ul class="tt-list-description">
                           <li style="font-size: 12px;">{{item.Attribute}}</li>
                         </ul>
                       </td>
                       <td>
-                        <div class="tt-price">
+                        <div class="tt-price" style="font-size: 13px;">
                           {{item.PricePerUnit}} AED
                         </div>
                       </td>
@@ -161,7 +159,7 @@
                         </div>
                       </td>
                       <td>
-                        <div class="tt-price subtotal">
+                        <div class="tt-price subtotal" style="font-size: 13px;">
                           {{item.PricePerUnit * item.Count}} AED
                         </div>
                       </td>

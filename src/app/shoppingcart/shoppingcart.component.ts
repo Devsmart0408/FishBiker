@@ -96,7 +96,7 @@ export class ShoppingCartComponent implements OnInit {
   deleteCart(product: any) {
     this.shoppingCart.Products.forEach(function(item, index, array) {
       if(item.Product.ProductId == product.Product.ProductId && item.AttributeId == product.AttributeId) {
-        array.splice(0, 1);
+        array.splice(index, 1);
       }
     })
     localStorage.setItem(ConstValue.ShoppingCart, JSON.stringify(this.shoppingCart));
